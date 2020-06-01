@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -48,14 +49,20 @@ private String orderID,servicename;
                 for(int i=0;i<Orderarray.length();i++) {
                     JSONObject resdata = Orderarray.getJSONObject(i);
                     orderID=resdata.getString("orderID");
-                    DatabaseReference orderid = database.getReference(orderID);
-                    orderid.addValueEventListener(new ValueEventListener() {
+                    final DatabaseReference getorder = database.getReference(orderID);
+                    getorder.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.d("Rehman",dataSnapshot.toString());
                             String value = dataSnapshot.getValue(String.class);
-                            if(!value.equals("") && !value.equals("seen"))
+                           if(value==null)
+                           {
+
+                           }
+                            else if(value.equals("Unseen"))
                             {
                                 shownotification("You recieved new order");
+                                //getorder.setValue("Unseen");
                             }
                         }
 
@@ -88,7 +95,7 @@ private String orderID,servicename;
 
     public void shownotification(String message){
         PendingIntent p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
-        Notification n = new NotificationCompat.Builder(this)
+        Notification n = new NotificationCompat.Builder(Messaging_service.this)
                 .setSmallIcon(R.drawable.ic_clock)
                 .setContentTitle("Notification")
                 .setContentText(message)
@@ -96,6 +103,7 @@ private String orderID,servicename;
                 .setAutoCancel(true)
 
                 .build();
+
         NotificationManager notificationManager =(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0,n);
     }
