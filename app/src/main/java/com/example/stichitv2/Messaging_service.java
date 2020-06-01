@@ -1,10 +1,12 @@
 package com.example.stichitv2;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
@@ -94,18 +96,22 @@ private String orderID,servicename;
     }
 
     public void shownotification(String message){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            NotificationChannel channel = new NotificationChannel("Mynotification","Mynotification",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
         PendingIntent p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
-        Notification n = new NotificationCompat.Builder(Messaging_service.this)
+        NotificationCompat.Builder n = new NotificationCompat.Builder(this,"Mynotification")
                 .setSmallIcon(R.drawable.ic_clock)
                 .setContentTitle("Notification")
                 .setContentText(message)
                 .setContentIntent(p1)
-                .setAutoCancel(true)
+                .setAutoCancel(true);
 
-                .build();
-
-        NotificationManager notificationManager =(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0,n);
+        NotificationManagerCompat notificationManager =NotificationManagerCompat.from(this);
+        notificationManager.notify(999,n.build());
     }
 
 
