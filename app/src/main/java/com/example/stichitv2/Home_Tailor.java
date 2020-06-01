@@ -149,11 +149,40 @@ public class Home_Tailor extends AppCompatActivity {
         });
         // CALENDAR VIEW SETTINGS START
         //try
+        try {
+            post_data.put("id",user_id);
+            post_data.put("utype",utype);
+            final String temp1  = urli+"test/ordersid";
+            JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, temp1, post_data, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d("Rehman",response.toString());
 
-        Intent a  = new Intent(Home_Tailor.this,Messaging_service.class);
-        a.putExtra("servicename","getorder");
-        a.putExtra("tailorid",Home_Tailor.user_id);
-        startService(a);
+                    try {
+                        JSONArray array = response.getJSONArray("resData");
+                        Intent a  = new Intent(Home_Tailor.this,Messaging_service.class);
+                        a.putExtra("servicename","getorder");
+                        a.putExtra("orderarray",response.getJSONArray("resData").toString());
+                        startService(a);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        // Toast.makeText(editprofile.this, "no key: 'id' in reponse", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+
+                }
+            });
+            queue.add(getRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.d("Rehman",e.getMessage());
+        }
+
 
         //end
         Calendar startDate = Calendar.getInstance();

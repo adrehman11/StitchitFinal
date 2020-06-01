@@ -18,6 +18,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class Messaging_service extends Service {
 private String orderID,servicename;
@@ -32,26 +36,39 @@ private String orderID,servicename;
         {
             orderID = intent.getStringExtra("oid");
             DatabaseReference orderid = database.getReference(orderID);
-            orderid.setValue("uncomplete");
+            orderid.setValue("Unseen");
         }
 
+
         else if(servicename.equals("getorder")){
-            orderID = intent.getStringExtra("oid");
-            DatabaseReference orderid = database.getReference(orderID);
-            orderid.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    // This method is called once with the initial value and again
-                    // whenever data at this location is updated.
-                    String value = dataSnapshot.getValue(String.class);
 
-                }
+            String jsonArray = intent.getStringExtra("orderarray");
+            try {
+                JSONArray Orderarray = new JSONArray(jsonArray);
+                for(int i=0;i<Orderarray.length();i++) {
+                    JSONObject resdata = Orderarray.getJSONObject(i);
+                    orderID=resdata.getString("orderID");
+                    DatabaseReference orderid = database.getReference(orderID);
+                    orderid.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = dataSnapshot.getValue(String.class);
+                            if(!value.equals("") && !value.equals("seen"))
+                            {
+                                shownotification("You recieved new order");
+                            }
+                        }
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                        }
+                    });
                 }
-            });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
 
 
@@ -69,19 +86,19 @@ private String orderID,servicename;
         return null;
     }
 
-//    public void shownotification(String message){
-//        PendingIntent p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, testactivity.class)},0);
-//        Notification n = new NotificationCompat.Builder(this)
-//                .setSmallIcon(R.drawable.ic_clock)
-//                .setContentTitle("Hogya")
-//                .setContentText(message)
-//                .setContentIntent(p1)
-//                .setAutoCancel(true)
-//
-//                .build();
-//        NotificationManager notificationManager =(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//        notificationManager.notify(0,n);
-//    }
+    public void shownotification(String message){
+        PendingIntent p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
+        Notification n = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_clock)
+                .setContentTitle("Notification")
+                .setContentText(message)
+                .setContentIntent(p1)
+                .setAutoCancel(true)
+
+                .build();
+        NotificationManager notificationManager =(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0,n);
+    }
 
 
 }
