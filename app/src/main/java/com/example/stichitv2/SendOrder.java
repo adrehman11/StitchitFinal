@@ -358,6 +358,11 @@ public class SendOrder extends AppCompatActivity {
                                 if(message.equals("order placed"))
                                 {
                                     progressDialog.dismiss();
+                                    Intent a  = new Intent(SendOrder.this,Messaging_service.class);
+                                    a.putExtra("oid",response.getString("orderid"));
+                                    a.putExtra("tailorid",response.getString("tailorid"));
+                                    a.putExtra("servicename","sendorder");
+                                    startService(a);
                                     Intent intent = new Intent(SendOrder.this,Home_Customer.class);
                                     startActivity(intent);
                                 }

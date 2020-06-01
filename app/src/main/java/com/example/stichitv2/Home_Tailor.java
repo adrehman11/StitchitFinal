@@ -32,7 +32,6 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class Home_Tailor extends AppCompatActivity {
 
-
     private ImageView tailor_profile_btn;
     private TextView orders, gallery, history, notification,profile_name,neworder,rejectedOrder,pending,rating;
     public static  String user_id,utype,name,ratingvalue;
@@ -47,6 +46,8 @@ public class Home_Tailor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__tailor);
+
+
 
         progressDialog = new ProgressDialog((Home_Tailor.this));
         progressDialog.show();
@@ -78,8 +79,6 @@ public class Home_Tailor extends AppCompatActivity {
         notification = findViewById(R.id.tailor_notification);
         rejectedOrder = findViewById(R.id.RejectedOrder);
         pending= findViewById(R.id.tailor_pending);
-
-
 
         //      GENERATING CUSTOMERS LIST
         try {
@@ -149,7 +148,14 @@ public class Home_Tailor extends AppCompatActivity {
             }
         });
         // CALENDAR VIEW SETTINGS START
+        //try
 
+        Intent a  = new Intent(Home_Tailor.this,Messaging_service.class);
+        a.putExtra("servicename","getorder");
+        a.putExtra("tailorid",Home_Tailor.user_id);
+        startService(a);
+
+        //end
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
