@@ -28,7 +28,9 @@ import org.json.JSONObject;
 
 public class Messaging_service extends Service {
 private String orderID,servicename;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference("SendOrders");
+
+
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -38,7 +40,8 @@ private String orderID,servicename;
         if(servicename.equals("sendorder"))
         {
             orderID = intent.getStringExtra("oid");
-            DatabaseReference orderid = database.getReference(orderID);
+
+            DatabaseReference orderid = database.child(orderID);
             orderid.setValue("Unseen");
         }
 
@@ -51,7 +54,7 @@ private String orderID,servicename;
                 for(int i=0;i<Orderarray.length();i++) {
                     JSONObject resdata = Orderarray.getJSONObject(i);
                     orderID=resdata.getString("orderID");
-                    final DatabaseReference getorder = database.getReference(orderID);
+                    final DatabaseReference getorder = database.child(orderID);
                     getorder.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,7 +67,7 @@ private String orderID,servicename;
                             else if(value.equals("Unseen"))
                             {
                                 shownotification("You recieved new order");
-                                //getorder.setValue("Unseen");
+                                getorder.setValue("seen");
                             }
                         }
 
