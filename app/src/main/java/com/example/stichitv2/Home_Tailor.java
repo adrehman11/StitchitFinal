@@ -161,7 +161,7 @@ public class Home_Tailor extends AppCompatActivity {
                     try {
                         JSONArray array = response.getJSONArray("resData");
                         Intent a  = new Intent(Home_Tailor.this,Messaging_service.class);
-                        a.putExtra("servicename","getorder");
+                        a.putExtra("servicename","getnotificationtailor");
                         a.putExtra("orderarray",response.getJSONArray("resData").toString());
                         startService(a);
 

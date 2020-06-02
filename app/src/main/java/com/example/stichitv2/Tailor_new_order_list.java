@@ -86,6 +86,10 @@ public class Tailor_new_order_list  extends Fragment {
                             try {
                                 message = response.getString("message");
                                 if (message.equals("orderaccepted")){
+                                    Intent a  = new Intent(inflater.getContext(),Messaging_service.class);
+                                    a.putExtra("servicename","OrderAccepted");
+                                    a.putExtra("OrderID",orders.get(position).getID());
+                                   getActivity().startService(a);
                                     Intent i = new Intent(inflater.getContext(),TailorNewOrder.class);
                                     startActivity(i);
                                 }
@@ -125,6 +129,10 @@ public class Tailor_new_order_list  extends Fragment {
                             try {
                                 message = response.getString("message");
                                 if (message.equals("orderrejected")){
+                                    Intent a  = new Intent(inflater.getContext(),Messaging_service.class);
+                                    a.putExtra("servicename","OrderRejected");
+                                    a.putExtra("OrderID",orders.get(position).getID());
+                                    getActivity().startService(a);
                                     Intent i = new Intent(inflater.getContext(),TailorNewOrder.class);
                                     startActivity(i);
                                 }

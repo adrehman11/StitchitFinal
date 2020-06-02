@@ -85,6 +85,10 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                             try {
                                 message = response.getString("message");
                                 if (message.equals("orderaccepted")){
+                                    Intent a  = new Intent(TailorNewOrderDetails.this,Messaging_service.class);
+                                    a.putExtra("servicename","OrderAccepted");
+                                    a.putExtra("OrderID",orderID);
+                                    startService(a);
                                     Intent intent = new Intent(v.getContext(),TailorNewOrder.class);
                                     startActivity(intent);
                                 }
@@ -125,6 +129,10 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                             try {
                                 message = response.getString("message");
                                 if (message.equals("orderrejected")){
+                                    Intent a  = new Intent(TailorNewOrderDetails.this,Messaging_service.class);
+                                    a.putExtra("servicename","OrderRejected");
+                                    a.putExtra("OrderID",orderID);
+                                    startService(a);
                                     Intent intent = new Intent(v.getContext(),TailorNewOrder.class);
                                     startActivity(intent);
                                 }
