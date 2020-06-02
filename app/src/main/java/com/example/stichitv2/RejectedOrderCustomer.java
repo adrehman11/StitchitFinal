@@ -31,7 +31,7 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class RejectedOrderCustomer extends AppCompatActivity {
 
-    private TextView        measurements, gallery, notification, history,tailorNearMe,profile_name,neworder,rejectedOrder;
+    private TextView        measurements, gallery, notification, history,tailorNearMe,profile_name,neworder,rejectedOrder,myorder;
     private ImageView       customer_profile_icon, customer_settings_icon;
     public static  String user_id,utype,name;
     final JSONObject post_data = new JSONObject();
@@ -53,6 +53,7 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         //      DECLARATION OF  LAYOUT REFERENCE
+        myorder= findViewById(R.id.rejectedordercustomer_my_orders);
         measurements                = findViewById(R.id.rejectedordercustomer_measurements);
         customer_settings_icon       = findViewById(R.id.rejectedordercustomer_settings_icon_myorders);
         gallery = findViewById(R.id.rejectedordercustomer_gallery);
@@ -92,13 +93,13 @@ public class RejectedOrderCustomer extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        rejectedOrder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(RejectedOrderCustomer.this,RejectedOrderTailor.class);
-//                startActivity(intent);
-//            }
-//        });
+        myorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RejectedOrderCustomer.this,Home_Customer.class);
+                startActivity(intent);
+            }
+        });
 
         measurements.setOnClickListener(new View.OnClickListener() {
             @Override
