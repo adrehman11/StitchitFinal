@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class OrderDetail extends AppCompatActivity {
+public class  OrderDetail extends AppCompatActivity {
 
     private ImageView back_btn_orderDetail;
     private StepView stepView;
@@ -215,13 +215,22 @@ public class OrderDetail extends AppCompatActivity {
                         stepView.go(1,true);
                     first = true;
                     orderstatus2 ="Cut";
-
+                    Intent a  = new Intent(OrderDetail.this,Messaging_service.class);
+                    a.putExtra("servicename","setorderstatus");
+                    a.putExtra("orderStatus","Cut");
+                    a.putExtra("orderids",orderID);
+                    startService(a);
                 }
                 if(step ==2){
                     if(stepView.getCurrentStep()==0 || stepView.getCurrentStep()==1 || stepView.getCurrentStep()==2 || stepView.getCurrentStep()==3 ||stepView.getCurrentStep()==4)
                         stepView.go(2,true);
                     second = true;
                     orderstatus2 ="Stitch";
+                    Intent a  = new Intent(OrderDetail.this,Messaging_service.class);
+                    a.putExtra("servicename","setorderstatus");
+                    a.putExtra("orderStatus","Stitch");
+                    a.putExtra("orderids",orderID);
+                    startService(a);
                 }
                 if (step==3){
 
@@ -229,6 +238,11 @@ public class OrderDetail extends AppCompatActivity {
                         stepView.go(3,true);
                     third = true;
                     orderstatus2 ="Press";
+                    Intent a  = new Intent(OrderDetail.this,Messaging_service.class);
+                    a.putExtra("servicename","setorderstatus");
+                    a.putExtra("orderStatus","Press");
+                    a.putExtra("orderids",orderID);
+                    startService(a);
                 }
 
                 if (step==4){
@@ -237,6 +251,11 @@ public class OrderDetail extends AppCompatActivity {
                         stepView.go(4,true);
                     third = true;
                     orderstatus2 ="Finish";
+                    Intent a  = new Intent(OrderDetail.this,Messaging_service.class);
+                    a.putExtra("servicename","setorderstatus");
+                    a.putExtra("orderStatus","Finish");
+                    a.putExtra("orderids",orderID);
+                    startService(a);
                 }
                 try {
                     post_data.put("id",Home_Tailor.user_id);

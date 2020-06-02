@@ -47,6 +47,32 @@ private String orderID,servicename;
             DatabaseReference orderid = database.child(orderID);
             orderid.setValue("Unseen");
         }
+       else if(servicename.equals("setorderstatus"))
+        {
+            orderID = intent.getStringExtra("orderids");
+           String status = intent.getStringExtra("orderStatus");
+           if(status.equals("Cut")){
+               DatabaseReference orderid = orderARs.child(orderID);
+               orderid.setValue("Cut");
+           }
+           else if(status.equals("Stitch"))
+           {
+               DatabaseReference orderid = orderARs.child(orderID);
+               orderid.setValue("Stitch");
+           }
+           else if(status.equals("Press"))
+           {
+               DatabaseReference orderid = orderARs.child(orderID);
+               orderid.setValue("Press");
+           }
+           else if(status.equals("Finish"))
+           {
+               DatabaseReference orderid = orderARs.child(orderID);
+               orderid.setValue("Finish");
+           }
+
+
+        }
         else if(servicename.equals("OrderRejected") || servicename.equals("OrderAccepted"))
         {
             orderID = intent.getStringExtra("OrderID");
@@ -110,6 +136,26 @@ private String orderID,servicename;
                                 shownotification("You recieved new order (reorder)");
                                 getnotification1.setValue("seen");
                             }
+                            else if(value.equals("Cut"))
+                            {
+                                shownotification("Your Order is in cutting stage");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Stitch"))
+                            {
+                                shownotification("Your Order is ready for stitch");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Press"))
+                            {
+                                shownotification("Your Order is ready for press");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Finish"))
+                            {
+                                shownotification("Your Order is completed");
+                                getnotification1.setValue("seen");
+                            }
                         }
 
                         @Override
@@ -135,7 +181,7 @@ private String orderID,servicename;
                     getnotification1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Log.d("Rehman",dataSnapshot.toString());
+
                             String value = dataSnapshot.getValue(String.class);
                            if(value==null)
                            {
@@ -207,6 +253,15 @@ private String orderID,servicename;
         if(message.equals("You recieved new order (reorder)"))
         {
             p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
+        }
+        if(message.equals("Your Order is in cutting stage") || message.equals("Your Order is ready for press")
+                || message.equals("Your Order is ready for stitch"))
+        {
+            p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, Home_Customer.class)},0);
+        }
+        if(message.equals("Your Order is completed"))
+        {
+            p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, CustomerHistory.class)},0);
         }
 
         NotificationCompat.Builder n = new NotificationCompat.Builder(this,"Mynotification")
