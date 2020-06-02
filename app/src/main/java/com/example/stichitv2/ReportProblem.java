@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -14,12 +15,12 @@ import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickResult;
 
-public class ReportProblem extends AppCompatActivity implements IPickResult {
+public class ReportProblem extends AppCompatActivity  {
 
     private ImageView back_btn_reportproblme;
     private Button sendreq;
     private ImageView addimages,addimgetoreport;
-
+    private EditText edit1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class ReportProblem extends AppCompatActivity implements IPickResult {
         sendreq                = findViewById(R.id.abc);
         addimages              = findViewById(R.id.addimgetoreport);
         addimgetoreport        = findViewById(R.id.addimgetoreport);
-
+        edit1        = findViewById(R.id.edittexts);
 
         //     NAVIGATE BACK TO HOME SCREEN
         back_btn_reportproblme.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +55,7 @@ public class ReportProblem extends AppCompatActivity implements IPickResult {
         addimages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PickImageDialog.build(new PickSetup()).show(ReportProblem.this);
+
 
             }
         });
@@ -63,13 +64,6 @@ public class ReportProblem extends AppCompatActivity implements IPickResult {
     }
 
 
-    @Override
-    public void onPickResult(PickResult r) {
-        if (r.getError() == null) {
-            addimgetoreport.setImageBitmap(r.getBitmap());
-        } else {
-            //Handle possible errors
-            Toast.makeText(this, r.getError().getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+
+
 }

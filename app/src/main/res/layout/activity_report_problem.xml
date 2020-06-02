@@ -159,11 +159,12 @@
                     >
 
                     <EditText
+                        android:id="@+id/edittexts"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:lineSpacingExtra="3dp"
-                        android:inputType="textMultiLine">
+                        android:inputType="textMultiLine"
+                        android:lineSpacingExtra="3dp">
 
                     </EditText>
 
