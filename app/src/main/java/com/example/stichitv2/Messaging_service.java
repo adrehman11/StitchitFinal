@@ -62,6 +62,21 @@ private String orderID,servicename;
             }
 
         }
+        else if(servicename.equals("TailorReOrder") || servicename.equals("CustomerReOrder"))
+        {
+            orderID = intent.getStringExtra("OrderID");
+            if(servicename.equals("TailorReOrder"))
+            {
+                DatabaseReference reorder = orderARs.child(orderID);
+                reorder.setValue("ReOrderTailor");
+            }
+            else if (servicename.equals("CustomerReOrder"))
+            {
+                DatabaseReference orderAR = database.child(orderID);
+                orderAR.setValue("CustomerReOrder");
+            }
+
+        }
 
 
         else if(servicename.equals("notificationCustomer")){
@@ -75,7 +90,6 @@ private String orderID,servicename;
                     getnotification1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Log.d("Rehman",dataSnapshot.toString());
                             String value = dataSnapshot.getValue(String.class);
                             if(value==null)
                             {
@@ -89,6 +103,11 @@ private String orderID,servicename;
                             else if(value.equals("OrderRejected"))
                             {
                                 shownotification("Your Order is Rejected");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("ReOrderTailor"))
+                            {
+                                shownotification("You recieved new order (reorder)");
                                 getnotification1.setValue("seen");
                             }
                         }
@@ -127,6 +146,11 @@ private String orderID,servicename;
                                 shownotification("You recieved new order");
                                 getnotification1.setValue("seen");
                             }
+                           else if(value.equals("CustomerReOrder"))
+                           {
+                               shownotification("Your Order is ReAssigned");
+                               getnotification1.setValue("seen");
+                           }
                         }
 
                         @Override
@@ -173,6 +197,14 @@ private String orderID,servicename;
             p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, RejectedOrderCustomer.class)},0);
         }
         if(message.equals("You recieved new order"))
+        {
+            p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
+        }
+        if(message.equals("Your Order is ReAssigned"))
+        {
+            p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, CustomerNewOrders.class)},0);
+        }
+        if(message.equals("You recieved new order (reorder)"))
         {
             p1 = PendingIntent.getActivities(this,0, new Intent[]{new Intent(this, TailorNewOrder.class)},0);
         }

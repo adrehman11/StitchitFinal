@@ -419,7 +419,7 @@ public class FindTailorProfile extends AppCompatActivity {
                 }
                 else if(screenname.equals("reorder"))
                 {
-                    String oid = intent.getStringExtra("orderID");
+                    final String oid = intent.getStringExtra("orderID");
                     String orderdate=intent.getStringExtra("orderdate");
                     try {
                         post_data.put("id",Home_Customer.user_id);
@@ -437,6 +437,10 @@ public class FindTailorProfile extends AppCompatActivity {
                                 try {
                                     message = response.getString("message");
                                     if (message.equals("order reassigned")){
+                                        Intent a  = new Intent(FindTailorProfile.this,Messaging_service.class);
+                                        a.putExtra("servicename","CustomerReOrder");
+                                        a.putExtra("oid",oid);
+                                        startService(a);
                                         Intent intent = new Intent(FindTailorProfile.this,Home_Customer.class);
                                         startActivity(intent);
                                     }

@@ -77,7 +77,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
         {
          orderDate=   intent.getStringExtra("orderdate");
             orderID=   intent.getStringExtra("orderID");
-            Log.d("Rehman",orderID);
+
         }
 
         tailors = new ArrayList<Tailor>();
