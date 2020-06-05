@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -115,8 +116,9 @@ public class Home_Customer extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home_Customer.this,Gallery.class);
+                Intent intent = new Intent(Home_Customer.this, UnityPlayerActivity.class);
                 startActivity(intent);
+
             }
         });
         neworder.setOnClickListener(new View.OnClickListener() {
