@@ -138,13 +138,13 @@ public class CustomerNewOrders extends AppCompatActivity {
 //            }
 //        });
 
-//        history.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerNewOrders.this,CustomerHistory.class);
-//                startActivity(intent);
-//            }
-//        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerNewOrders.this,CustomerHistory.class);
+                startActivity(intent);
+            }
+        });
 
         //     INTENT TO MEASUREMENTS SCREEN
 
@@ -182,7 +182,8 @@ public class CustomerNewOrders extends AppCompatActivity {
                         String tailorlocation = resdata.getString("tailorLocation");
                         String image = resdata.getString("image");
                         String dresstype = resdata.getString("dresstype");
-                        Orders temp_o = new Orders(ID , tailorname, orderdate,orderID,image,tailorlocation,dresstype);
+                        String tailorID = resdata.getString("TailorID");
+                        Orders temp_o = new Orders(ID , tailorname, orderdate,orderID,image,tailorlocation,dresstype,tailorID);
                         orders.add(temp_o);
                     }
 

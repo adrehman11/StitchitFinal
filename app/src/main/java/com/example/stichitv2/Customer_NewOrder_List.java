@@ -15,7 +15,12 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.cometchat.pro.constants.CometChatConstants;
+
 import java.util.ArrayList;
+
+import constant.StringContract;
+import screen.messagelist.CometChatMessageScreen;
 
 public class Customer_NewOrder_List extends Fragment {
 
@@ -64,7 +69,9 @@ public class Customer_NewOrder_List extends Fragment {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(inflater.getContext(), ChatTailor.class);
+               intent.putExtra("UID",orders.get(position).getTailorID());
+                startActivity(intent);
             }
         });
 

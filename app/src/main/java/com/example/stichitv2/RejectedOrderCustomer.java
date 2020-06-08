@@ -187,7 +187,7 @@ public class RejectedOrderCustomer extends AppCompatActivity {
                         String image = resdata.getString("image");
                         String tailorLocation = resdata.getString("tailorLocation");
                         String dresstype = resdata.getString("dresstype");
-                        Orders temp_o = new Orders(ID ,tailorname,orderdate,ordersID, image,tailorLocation, dresstype);
+                        Orders temp_o = new Orders(ID ,tailorname,orderdate,ordersID, image,tailorLocation, dresstype,"abc");
                         orders.add(temp_o);
                     }
 

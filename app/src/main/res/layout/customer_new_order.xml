@@ -139,7 +139,7 @@
         <LinearLayout
             android:id="@+id/buttons_row_newOrderCustomer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="33dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
@@ -154,17 +154,17 @@
                 android:textColor="#E7E7E7"
                 android:textSize="10sp" />
 
-<!--            <Button-->
-<!--                android:id="@+id/re_order_btn_newOrderCustomer"-->
-<!--                android:layout_width="95dp"-->
-<!--                android:layout_height="15dp"-->
-<!--                android:layout_gravity="end"-->
-<!--                android:layout_marginRight="8dp"-->
-<!--                android:layout_weight="0"-->
-<!--                android:background="@drawable/rounded_rectangle_outlined"-->
-<!--                android:text="Re Order"-->
-<!--                android:textColor="#9E9E9E"-->
-<!--                android:textSize="10sp" />-->
+            <!--            <Button-->
+            <!--                android:id="@+id/re_order_btn_newOrderCustomer"-->
+            <!--                android:layout_width="95dp"-->
+            <!--                android:layout_height="15dp"-->
+            <!--                android:layout_gravity="end"-->
+            <!--                android:layout_marginRight="8dp"-->
+            <!--                android:layout_weight="0"-->
+            <!--                android:background="@drawable/rounded_rectangle_outlined"-->
+            <!--                android:text="Re Order"-->
+            <!--                android:textColor="#9E9E9E"-->
+            <!--                android:textSize="10sp" />-->
 
 
         </LinearLayout>

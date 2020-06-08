@@ -1,13 +1,29 @@
 package com.example.stichitv2;
 
 public class Orders {
-    private  String ID,tailorname,orderdate,ordersID,image,tailorlocation,dresstype;
+    private  String ID,tailorname,orderdate,ordersID,image,tailorlocation,dresstype,tailorID;
+
+    public String getOrdersID() {
+        return ordersID;
+    }
+
+    public void setOrdersID(String ordersID) {
+        this.ordersID = ordersID;
+    }
+
+    public void setTailorID(String tailorID) {
+        this.tailorID = tailorID;
+    }
+
+    public String getTailorID() {
+        return tailorID;
+    }
 
     public void setDresstype(String dresstype) {
         this.dresstype = dresstype;
     }
 
-    public Orders(String ID, String tailorname, String orderdate, String ordersID, String image, String tailorlocation, String dresstype) {
+    public Orders(String ID, String tailorname, String orderdate, String ordersID, String image, String tailorlocation, String dresstype,String tailorID) {
         this.ID = ID;
         this.tailorname = tailorname;
         this.orderdate = orderdate;
@@ -15,6 +31,7 @@ public class Orders {
         this.image = image;
         this.tailorlocation = tailorlocation;
         this.dresstype= dresstype;
+        this.tailorID= tailorID;
     }
 
     public Orders(String ID, String tailorname, String orderdate, String ordersID, String image, String dresstype) {
