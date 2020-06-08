@@ -29,9 +29,11 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 
+import screen.unified.CometChatUnified;
+
 public class Home_Customer extends AppCompatActivity {
 
-    private TextView        measurements, gallery, notification, history,tailorNearMe,profile_name,neworder,pending,rejectedOrder;
+    private TextView        measurements, gallery, Chat, history,tailorNearMe,profile_name,neworder,pending,rejectedOrder;
     private ImageView       customer_profile_icon, customer_settings_icon;
     public static  String user_id,utype,name;
     final JSONObject post_data = new JSONObject();
@@ -68,7 +70,7 @@ public class Home_Customer extends AppCompatActivity {
         measurements                = findViewById(R.id.customer_measurements);
         customer_settings_icon       = findViewById(R.id.customer_settings_icon_myorders);
         gallery = findViewById(R.id.customer_gallery);
-        notification = findViewById(R.id.customer_notification);
+        Chat = findViewById(R.id.customer_notification);
         tailorNearMe = findViewById(R.id.customer_tailor_near_me);
         neworder = findViewById(R.id.customer_newOrder);
         history = findViewById(R.id.customer_history);
@@ -139,11 +141,12 @@ public class Home_Customer extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
+        Chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home_Customer.this,CustomerNotification.class);
-                startActivity(intent);
+                        Intent intent =  new Intent(Home_Customer.this, CometChatUnified.class);
+                        intent.putExtra("userType","Tailor");
+                          startActivity(intent);
             }
         });
 

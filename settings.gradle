@@ -1,3 +1,4 @@
+include ':uikit'
 include ':stitchit-debug'
 include ':app'
 rootProject.name='Stichitv2'

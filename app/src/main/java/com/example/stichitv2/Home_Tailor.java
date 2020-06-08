@@ -30,11 +30,12 @@ import java.util.Calendar;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
+import screen.unified.CometChatUnified;
 
 public class Home_Tailor extends AppCompatActivity {
 
     private ImageView tailor_profile_btn;
-    private TextView orders, gallery, history, notification,profile_name,neworder,rejectedOrder,pending,rating;
+    private TextView orders, gallery, history, CHAT,profile_name,neworder,rejectedOrder,pending,rating;
     public static  String user_id,utype,name,ratingvalue;
 
     final JSONObject post_data = new JSONObject();
@@ -77,7 +78,7 @@ public class Home_Tailor extends AppCompatActivity {
         gallery = findViewById(R.id.tailor_3d_gallery);
         history = findViewById(R.id.tailor_history);
         neworder = findViewById(R.id.tailor_new_orders);
-        notification = findViewById(R.id.tailor_notification);
+        CHAT = findViewById(R.id.tailor_CHAT);
         rejectedOrder = findViewById(R.id.RejectedOrder);
         pending= findViewById(R.id.tailor_pending);
 
@@ -135,10 +136,11 @@ public class Home_Tailor extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
+        CHAT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home_Tailor.this,NotificationTailor.class);
+                Intent intent =  new Intent(Home_Tailor.this, CometChatUnified.class);
+                intent.putExtra("userType","Customer");
                 startActivity(intent);
             }
         });

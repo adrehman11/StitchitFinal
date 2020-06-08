@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ public class Customer_NewOrder_List extends Fragment {
     int                        position;
     private TextView ordersid,orderdate,tailorname,tailorlocation,dresstype;
     ImageView imageView;
+    Button b1;
 
 
     public Customer_NewOrder_List(ArrayList<Orders> orders, int position) {
@@ -34,6 +36,8 @@ public class Customer_NewOrder_List extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         LinearLayout l   = (LinearLayout) inflater.inflate(R.layout.customer_new_order, container, false);
+
+        b1=l.findViewById(R.id.contact_tailor_btn_newOrderCustomer) ;
 
         ordersid =  l.findViewById(R.id.customer_id_myOrder2);
         ordersid     .setText(orders.get(position).getOrderID());
@@ -56,6 +60,14 @@ public class Customer_NewOrder_List extends Fragment {
         imageView.setImageBitmap(decodedByte);
 
         CustomerNewOrders.progressDialog.dismiss();
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

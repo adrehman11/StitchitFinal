@@ -9,9 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Transition;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.cometchat.pro.core.AppSettings;
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
 
 import java.util.List;
 
@@ -19,13 +24,28 @@ public class MainActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 1500;
     private ImageView logo;
-
+    private String  appID   = Config.APPID; // Replace with your App ID
+    private String  region  = Config.Region; // Replace with your App Region ("eu" or "us")
+    private String  TAG     = "Rehman";
+    private String  authKey = Config.AuthKey; // Replace with your App Auth Key
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Initialize CometChatPro
 
+        AppSettings appSettings=new AppSettings.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
+        CometChat.init(this, appID,appSettings, new CometChat.CallbackListener<String>() {
+            @Override
+            public void onSuccess(String successMessage) {
+               Log.d(TAG, "Initialization completed successfully");
+            }
+            @Override
+            public void onError(CometChatException e) {
+                Log.d(TAG, "Initialization failed with exception: " + e.getMessage());
+            }
+        });
         logo = findViewById(R.id.logo_icon);
 
         new Handler().postDelayed(new Runnable() {

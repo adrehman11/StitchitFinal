@@ -23,6 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -141,10 +144,47 @@ public class SignIn extends AppCompatActivity {
 
                                     if (utype.equals("Customer"))
                                     {
+                                        if (CometChat.getLoggedInUser() == null) {
+                                            CometChat.login(id, Config.AuthKey, new CometChat.CallbackListener<User>() {
+
+                                                @Override
+                                                public void onSuccess(User user) {
+                                                    Log.d("Rehman", "Login Successful : " + user.toString());
+                                                }
+
+                                                @Override
+                                                public void onError(CometChatException e) {
+                                                    Log.d("Rehman", "Login failed with exception: " + e.getMessage());
+                                                }
+                                            });
+                                        } else {
+                                            // User already logged in
+                                            Toast.makeText(SignIn.this, "User is already logged in", Toast.LENGTH_SHORT).show();
+
+                                        }
                                         Intent i = new Intent(SignIn.this,Home_Customer.class);
                                         startActivity(i);
                                     }
                                     else if (utype.equals("Tailor")){
+                                        if (CometChat.getLoggedInUser() == null) {
+                                            CometChat.login(id, Config.AuthKey, new CometChat.CallbackListener<User>() {
+
+                                                @Override
+                                                public void onSuccess(User user) {
+                                                    Log.d("Rehman", "Login Successful : " + user.toString());
+                                                }
+
+                                                @Override
+                                                public void onError(CometChatException e) {
+                                                    Log.d("Rehman", "Login failed with exception: " + e.getMessage());
+                                                    Log.d("Rehman","ni chali");
+                                                }
+                                            });
+                                        } else {
+                                            // User already logged in
+                                           Log.d("Rehman","logged in already");
+
+                                        }
                                         Intent i = new Intent(SignIn.this,Home_Tailor.class);
                                         startActivity(i);
                                     }

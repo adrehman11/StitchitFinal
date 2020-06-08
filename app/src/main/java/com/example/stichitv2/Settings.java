@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
 
 public class Settings extends AppCompatActivity {
 
@@ -109,6 +113,16 @@ public class Settings extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CometChat.logout(new CometChat.CallbackListener<String>() {
+                    @Override
+                    public void onSuccess(String successMessage) {
+                        Log.d("Rehman", "Logout completed successfully");
+                    }
+                    @Override
+                    public void onError(CometChatException e) {
+                        Log.d("Rehman", "Logout failed with exception: " + e.getMessage());
+                    }
+                });
                 SharedPreferences sharedPref = getSharedPreferences("rememberme",MODE_PRIVATE);
                 SharedPreferences.Editor editor =preferences.edit();
                 editor.putString("key","false");

@@ -22,6 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cometchat.pro.core.CometChat;
+import com.cometchat.pro.exceptions.CometChatException;
+import com.cometchat.pro.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -136,7 +139,24 @@ public class SignUp extends AppCompatActivity {
                                     message = response.getString("message");
                                     if (message.equals("next")) {
                                         id = response.getString("id");
+                                        Log.d("Rehman",id);
                                         utype = response.getString("utype");
+                                        com.cometchat.pro.models.User user = new User();
+                                        user.setUid(id); // Replace with the UID for the user to be created
+                                        user.setName(response.getString("name")); // Replace with the name of the user
+                                        user.setRole(utype);
+
+                                        CometChat.createUser(user, Config.AuthKey, new CometChat.CallbackListener<com.cometchat.pro.models.User>() {
+                                            @Override
+                                            public void onSuccess(User user) {
+                                                Log.d("Rehman", user.toString());
+                                            }
+
+                                            @Override
+                                            public void onError(CometChatException e) {
+                                                Log.e("Rehman", e.getMessage());
+                                            }
+                                        });
 
                                        Intent i = new Intent(SignUp.this, TailorLocation.class);
                                         SharedPreferences sharedPref = getSharedPreferences("rememberme",MODE_PRIVATE);
@@ -151,6 +171,25 @@ public class SignUp extends AppCompatActivity {
                                     }
                                     if (message.equals("login")) {
                                         id = response.getString("id");
+                                        utype = response.getString("utype");
+                                        com.cometchat.pro.models.User user = new User();
+                                        user.setUid(id); // Replace with the UID for the user to be created
+                                        user.setName(response.getString("name")); // Replace with the name of the user
+                                        user.setRole(utype);
+
+                                        CometChat.createUser(user, Config.AuthKey, new CometChat.CallbackListener<com.cometchat.pro.models.User>() {
+                                            @Override
+                                            public void onSuccess(User user) {
+                                                Log.d("Rehman", user.toString());
+                                            }
+
+                                            @Override
+                                            public void onError(CometChatException e) {
+                                                Log.e("Rehman", e.getMessage());
+                                            }
+                                        });
+
+
                                         Intent i = new Intent(SignUp.this, Home_Customer.class);
                                         SharedPreferences sharedPref = getSharedPreferences("rememberme",MODE_PRIVATE);
                                         SharedPreferences.Editor editor =preferences.edit();

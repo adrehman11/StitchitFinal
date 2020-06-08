@@ -29,7 +29,8 @@ import org.json.JSONObject;
 
 
 public class Messaging_service extends Service {
-private String orderID,servicename;
+private String orderID;
+String servicename="alibaba";
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("NotificationTailor");
     DatabaseReference orderARs = FirebaseDatabase.getInstance().getReference("NotificationCustomer");
     Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
