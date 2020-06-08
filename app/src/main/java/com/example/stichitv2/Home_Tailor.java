@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,7 +74,7 @@ public class Home_Tailor extends AppCompatActivity {
         //      DECLARATION OF  LAYOUT REFERENCE
         tailor_profile_btn       = findViewById(R.id.tailor_profile_btn);
         orders = findViewById(R.id.tailor_my_orders);
-       // gallery = findViewById(R.id.tailor_3d_gallery);
+        gallery = findViewById(R.id.tailor_3d_gallery);
         history = findViewById(R.id.tailor_history);
         neworder = findViewById(R.id.tailor_new_orders);
         notification = findViewById(R.id.tailor_notification);
@@ -117,13 +118,14 @@ public class Home_Tailor extends AppCompatActivity {
             }
         });
 
-//        gallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Home_Tailor.this,Home_Tailor.class);
-//                startActivity(intent);
-//            }
-//        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home_Tailor.this, UnityPlayerActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override

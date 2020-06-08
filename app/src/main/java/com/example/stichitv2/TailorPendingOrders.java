@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.unity3d.player.UnityPlayerActivity;
 
 
 import org.json.JSONArray;
@@ -101,8 +102,9 @@ public class TailorPendingOrders extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TailorPendingOrders.this, Home_Tailor.class);
+                Intent intent = new Intent(TailorPendingOrders.this, UnityPlayerActivity.class);
                 startActivity(intent);
+
             }
         });
 
