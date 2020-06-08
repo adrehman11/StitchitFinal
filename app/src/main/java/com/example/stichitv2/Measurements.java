@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +55,7 @@ public class Measurements extends AppCompatActivity {
             done.setVisibility(View.VISIBLE);
         }
         profile_name = findViewById(R.id.customerName_measurements);
+        gallery = findViewById(R.id.measurements_gallery);
 
         profile_name.setText(Home_Customer.name);
         rejectedOrder = findViewById(R.id.customerrejectedOrder);
@@ -78,7 +80,6 @@ public class Measurements extends AppCompatActivity {
         edittrouserbuton = findViewById(R.id.editTrouserButton);
         customer_settings_icon       = findViewById(R.id.customer_settings_iconInMeasurements);
         myorder = findViewById(R.id.measurements_my_orders);
-        gallery = findViewById(R.id.measurements_gallery);
         history = findViewById(R.id.measurements_history);
         notification = findViewById(R.id.measurements_notification);
         tailornearme = findViewById(R.id.measurements_tailor_near_me);
@@ -102,6 +103,14 @@ public class Measurements extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(),CustomerNewOrders.class);
                 intent.putExtra("screen","home");
                 startActivity(intent);
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Measurements.this, UnityPlayerActivity.class);
+                startActivity(intent);
+
             }
         });
         editshirtbuton.setOnClickListener(new View.OnClickListener() {

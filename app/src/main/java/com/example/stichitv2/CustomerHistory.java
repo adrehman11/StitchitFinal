@@ -48,6 +48,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONObject;
 
@@ -150,6 +151,14 @@ public class CustomerHistory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CustomerHistory.this,RejectedOrderCustomer.class);
                 startActivity(intent);
+            }
+        });
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerHistory.this, UnityPlayerActivity.class);
+                startActivity(intent);
+
             }
         });
         pending.setOnClickListener(new View.OnClickListener() {
