@@ -113,11 +113,13 @@ String servicename="alibaba";
                 for(int i=0;i<Orderarray.length();i++) {
                     JSONObject resdata = Orderarray.getJSONObject(i);
                     orderID=resdata.getString("orderID");
+                    Log.d("Rehman",orderID);
                     final DatabaseReference getnotification1 = orderARs.child(orderID);
                     getnotification1.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String value = dataSnapshot.getValue(String.class);
+
                             if(value==null)
                             {
 

@@ -242,6 +242,7 @@ public class CustomerHistory extends AppCompatActivity {
                     }
 
                     fragmentTransaction.commit();
+
                     if(array2.length() > 0 ) {
                         for (int i = 0; i < 1; i++) {
                             JSONObject resdata2 = array2.getJSONObject(i);

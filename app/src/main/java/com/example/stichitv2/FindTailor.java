@@ -170,7 +170,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
         LatLng latLng = new LatLng(mlocation.getLatitude(), mlocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("location is yours");
         ggoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         ggoogleMap.addMarker(markerOptions);
 
         ggoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
