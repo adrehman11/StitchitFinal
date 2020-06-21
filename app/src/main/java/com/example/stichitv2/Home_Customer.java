@@ -177,6 +177,7 @@ public class Home_Customer extends AppCompatActivity {
                         JSONArray array = response.getJSONArray("resData");
                         Intent a  = new Intent(Home_Customer.this,Messaging_service.class);
                         a.putExtra("servicename","notificationCustomer");
+                        a.putExtra("anc","customer");
                         a.putExtra("orderarray",response.getJSONArray("resData").toString());
                         startService(a);
 
