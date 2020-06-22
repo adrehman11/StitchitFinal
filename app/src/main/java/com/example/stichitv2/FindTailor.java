@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -63,10 +64,63 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
     GoogleMap ggoogleMap=null;
     Dialog myDialog;
     String  screen,orderID,orderDate;
+
+    private LinearLayout recommender_popup;
+    private ImageView popup_backBtn;
+    private TextView popup_txt1,popup_txt2,popup_txt3;
+    private Button recommenderBtn;
+    private Boolean show_popup = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_tailor_location);
+
+
+
+        popup_backBtn = findViewById(R.id.recommender_close);
+        popup_txt1 = findViewById(R.id.popup_txt1);
+        popup_txt2 = findViewById(R.id.popup_txt2);
+        popup_txt3 = findViewById(R.id.popup_txt3);
+        recommenderBtn = findViewById(R.id.recommenderButton);
+        recommender_popup = findViewById(R.id.recommenderPopup);
+
+
+        recommenderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                show_popup = !show_popup;
+
+                recommender_popup.setVisibility(View.VISIBLE);
+
+
+//                if(show_popup){
+//                    recommender_popup.setVisibility(View.VISIBLE);
+//                }
+//                else{
+//                    recommender_popup.setVisibility(View.INVISIBLE);
+//                }
+
+            }
+        });
+
+
+        popup_backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                recommender_popup.setVisibility(View.INVISIBLE);
+//                show_popup=false;
+
+
+            }
+        });
+
+
+
+
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         queue = Volley.newRequestQueue(FindTailor.this);

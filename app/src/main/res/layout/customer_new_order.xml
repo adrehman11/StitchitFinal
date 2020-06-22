@@ -53,12 +53,12 @@
 
             <TextView
                 android:id="@+id/customer_newOrder_dress_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="159dp"
+                android:layout_height="19dp"
                 android:layout_weight="1"
                 android:text="Shirt"
                 android:textColor="#110800"
-                android:textSize="22sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/icon_date_newOrderCustomer"
@@ -83,7 +83,8 @@
                     android:layout_weight="0"
                     android:text="Feb 08, 2019"
                     android:textAlignment="textEnd"
-                    android:textColor="#757575" />
+                    android:textColor="#757575"
+                    android:textSize="10sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -130,10 +131,11 @@
                 android:id="@+id/customer_newOrder_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mushtaq Tailors"
-                android:maxLength="20"
                 android:lines="1"
-                android:textColor="#757575" />
+                android:maxLength="20"
+                android:text="Mushtaq Tailors"
+                android:textColor="#757575"
+                android:textSize="10sp" />
         </LinearLayout>
 
         <LinearLayout

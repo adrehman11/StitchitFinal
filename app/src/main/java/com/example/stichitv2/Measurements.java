@@ -81,7 +81,7 @@ public class Measurements extends AppCompatActivity {
         customer_settings_icon       = findViewById(R.id.customer_settings_iconInMeasurements);
         myorder = findViewById(R.id.measurements_my_orders);
         history = findViewById(R.id.measurements_history);
-        notification = findViewById(R.id.measurements_notification);
+//        notification = findViewById(R.id.measurements_notification);
         tailornearme = findViewById(R.id.measurements_tailor_near_me);
         neworder = findViewById(R.id.measurements_newOrder);
 
@@ -193,14 +193,14 @@ public class Measurements extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(),CustomerNotification.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(v.getContext(),CustomerNotification.class);
+//                startActivity(intent);
+//            }
+//        });
         try {
             String urli = Config.url;
             String temp  = urli+"addmeasurements/getmeasurements";

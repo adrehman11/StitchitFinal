@@ -61,10 +61,10 @@ public class TailorPendingOrders extends AppCompatActivity {
         myorders = findViewById(R.id.tailorPending_my_orders);
         gallery = findViewById(R.id.tailorPending_3d_gallery);
         history = findViewById(R.id.tailorPending_history);
-        notification = findViewById(R.id.tailorPending_notification);
+//        notification = findViewById(R.id.tailorPending_notification);
         neworders = findViewById(R.id.tailorPending_new_orders);
         pending = findViewById(R.id.tailorPending_pending);
-        arview = findViewById(R.id.tailorPending_arView);
+//        arview = findViewById(R.id.tailorPending_arView);
         rejectedOrder = findViewById(R.id.tailorpending_rejectedOrder2);
         profile_name = findViewById(R.id.tailorPending_tailorName);
         profile_name.setText(Home_Tailor.name);
@@ -116,13 +116,13 @@ public class TailorPendingOrders extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TailorPendingOrders.this, NotificationTailor.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(TailorPendingOrders.this, NotificationTailor.class);
+//                startActivity(intent);
+//            }
+//        });
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override

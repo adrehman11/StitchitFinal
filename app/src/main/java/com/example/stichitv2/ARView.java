@@ -29,7 +29,7 @@ public class ARView extends AppCompatActivity {
         measurements                = findViewById(R.id.customer_ARView_measurements);
         customer_settings_icon       = findViewById(R.id.customer_settings_icon_arView);
         gallery = findViewById(R.id.customer_ARView_gallery);
-        notification = findViewById(R.id.customer_ARView_notification);
+//        notification = findViewById(R.id.customer_ARView_notification);
         history = findViewById(R.id.customer_ARView_history);
         neworder= findViewById(R.id.customer_ARView_newOrder);
         pending= findViewById(R.id.customer_ARView_pending);
@@ -65,13 +65,13 @@ public class ARView extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ARView.this, CustomerNotification.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ARView.this, CustomerNotification.class);
+//                startActivity(intent);
+//            }
+//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override

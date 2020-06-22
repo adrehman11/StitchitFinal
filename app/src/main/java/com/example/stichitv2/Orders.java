@@ -1,6 +1,7 @@
 package com.example.stichitv2;
 
-public class Orders {
+public class
+Orders {
     private  String ID,tailorname,orderdate,ordersID,image,tailorlocation,dresstype,tailorID;
 
     public String getOrdersID() {

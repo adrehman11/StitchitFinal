@@ -56,9 +56,9 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         //      DECLARATION OF  LAYOUT REFERENCE
         myorder= findViewById(R.id.rejectedordercustomer_my_orders);
         measurements                = findViewById(R.id.rejectedordercustomer_measurements);
-        customer_settings_icon       = findViewById(R.id.rejectedordercustomer_settings_icon_myorders);
+        customer_settings_icon       = findViewById(R.id.customer_profile_Rejected);
         gallery = findViewById(R.id.rejectedordercustomer_gallery);
-        notification = findViewById(R.id.rejectedordercustomer_notification);
+//        notification = findViewById(R.id.rejectedordercustomer_notification);
         tailorNearMe = findViewById(R.id.rejectedordercustomer_tailor_near_me);
         neworder = findViewById(R.id.rejectedordercustomer_newOrder);
         history = findViewById(R.id.rejectedordercustomer_history);
@@ -131,19 +131,18 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         customer_settings_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RejectedOrderCustomer.this,Settings.class);
-                intent.putExtra("screen_name","Customer");
+                Intent intent = new Intent(RejectedOrderCustomer.this,RejectedOrderCustomer.class);
                 startActivity(intent);
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RejectedOrderCustomer.this,CustomerNotification.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(RejectedOrderCustomer.this,CustomerNotification.class);
+//                startActivity(intent);
+//            }
+//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override

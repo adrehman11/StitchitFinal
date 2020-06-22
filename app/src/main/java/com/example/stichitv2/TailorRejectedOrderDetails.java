@@ -43,7 +43,7 @@ public class TailorRejectedOrderDetails extends AppCompatActivity {
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
         );
-        Intent intent           = getIntent();
+        Intent intent  = getIntent();
         orderID      = intent.getStringExtra("OID");
 
         queue= Volley.newRequestQueue(TailorRejectedOrderDetails.this);

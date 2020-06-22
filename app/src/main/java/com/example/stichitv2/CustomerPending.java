@@ -56,11 +56,11 @@ public class CustomerPending extends AppCompatActivity {
         measurements                = findViewById(R.id.customerPending_measurements);
         customer_settings_icon       = findViewById(R.id.customer_settings_icon_pending);
         gallery = findViewById(R.id.customerPending_gallery);
-        notification = findViewById(R.id.customerPending_notification);
+//        notification = findViewById(R.id.customerPending_notification);
         history = findViewById(R.id.customerPending_history);
         neworder= findViewById(R.id.customerPending_newOrder);
         home= findViewById(R.id.customerPending_my_orders);
-        arView = findViewById(R.id.customerPending_arView);
+//        arView = findViewById(R.id.customerPending_arView);
         tailornearme = findViewById(R.id.customerPending_tailor_near_me);
         rejectedOrder = findViewById(R.id.customerrejectedOrder4);
 
@@ -113,13 +113,13 @@ public class CustomerPending extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CustomerPending.this, CustomerNotification.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(CustomerPending.this, CustomerNotification.class);
+//                startActivity(intent);
+//            }
+//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,13 +129,13 @@ public class CustomerPending extends AppCompatActivity {
             }
         });
 
-        arView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CustomerPending.this, CustomerHistory.class);
-                startActivity(intent);
-            }
-        });
+//        arView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(CustomerPending.this, CustomerHistory.class);
+//                startActivity(intent);
+//            }
+//        });
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override

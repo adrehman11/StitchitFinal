@@ -68,9 +68,9 @@ public class Home_Customer extends AppCompatActivity {
 
         //      DECLARATION OF  LAYOUT REFERENCE
         measurements                = findViewById(R.id.customer_measurements);
-        customer_settings_icon       = findViewById(R.id.customer_settings_icon_myorders);
+        customer_profile_icon       = findViewById(R.id.customer_profile_myorder);
         gallery = findViewById(R.id.customer_gallery);
-        Chat = findViewById(R.id.customer_notification);
+//        Chat = findViewById(R.id.customer_notification);
         tailorNearMe = findViewById(R.id.customer_tailor_near_me);
         neworder = findViewById(R.id.customer_newOrder);
         history = findViewById(R.id.customer_history);
@@ -132,23 +132,22 @@ public class Home_Customer extends AppCompatActivity {
         });
 
         //     INTENT TO PROFILE SCREEN
-        customer_settings_icon.setOnClickListener(new View.OnClickListener() {
+        customer_profile_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home_Customer.this,Settings.class);
-                intent.putExtra("screen_name","Customer");
+                Intent intent = new Intent(Home_Customer.this,customerprofile.class);
                 startActivity(intent);
             }
         });
-
-        Chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                        Intent intent =  new Intent(Home_Customer.this, CometChatUnified.class);
-                        intent.putExtra("userType","Tailor");
-                          startActivity(intent);
-            }
-        });
+//
+//        Chat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                        Intent intent =  new Intent(Home_Customer.this, CometChatUnified.class);
+//                        intent.putExtra("userType","Tailor");
+//                          startActivity(intent);
+//            }
+//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +176,7 @@ public class Home_Customer extends AppCompatActivity {
                         JSONArray array = response.getJSONArray("resData");
                         Intent a  = new Intent(Home_Customer.this,Messaging_service.class);
                         a.putExtra("servicename","notificationCustomer");
+                        a.putExtra("anc","customer");
                         a.putExtra("orderarray",response.getJSONArray("resData").toString());
                         startService(a);
 

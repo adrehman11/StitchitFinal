@@ -59,43 +59,6 @@
 
                 </TextView>
 
-                <LinearLayout
-                    android:id="@+id/customer_ratings"
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:gravity="left"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/customer_rating1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/filledstar" />
-                    <ImageView
-                        android:id="@+id/customer_rating2"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/filledstar" />
-                    <ImageView
-                        android:id="@+id/customer_rating3"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/filledstar" />
-                    <ImageView
-                        android:id="@+id/customer_rating4"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/star" />
-                    <ImageView
-                        android:id="@+id/customer_rating5"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        app:srcCompat="@drawable/star" />
-
-                </LinearLayout>
-
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -190,25 +153,25 @@
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:id="@+id/rejectedordercustomer_arView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="AR VIEW"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/rejectedordercustomer_arView"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="AR VIEW"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
-                        <TextView
-                            android:id="@+id/rejectedordercustomer_notification"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="NOTIFICATION"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/rejectedordercustomer_notification"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="NOTIFICATION"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
 
 
@@ -230,12 +193,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/rejectedordercustomer_settings_icon_myorders"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:id="@+id/customer_profile_Rejected"
+                    android:layout_width="27dp"
+                    android:layout_height="34dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/settings_white_24dp" />
+                    app:srcCompat="@drawable/profile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

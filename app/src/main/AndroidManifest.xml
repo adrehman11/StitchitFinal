@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".ChatTailor"></activity>
+        <activity android:name=".customerprofile"></activity>
+        <activity android:name=".ChatTailor" />
         <activity android:name=".testactivity" />
         <activity android:name=".loadingScreen" />
         <activity android:name=".PopupProfile" />
@@ -36,10 +37,8 @@
         <activity android:name=".TailorNewOrderDetails" />
         <activity android:name=".TailorLocation" />
         <activity android:name=".TailorNewOrder" />
-        <activity android:name=".CutomerNotificationOrderDetails" />
         <activity android:name=".CustomerHistoryOrderDetails" />
         <activity android:name=".CustomerHistory" />
-        <activity android:name=".CustomerNotification" />
         <activity android:name=".FindTailor" />
         <activity android:name=".ResetPassword" />
         <activity android:name=".EnterCode" />
@@ -50,7 +49,6 @@
         <activity android:name=".OrderPlaced" />
         <activity android:name=".SendOrder" />
         <activity android:name=".TailorHistory" />
-        <activity android:name=".NotificationTailor" />
         <activity android:name=".Language" />
         <activity android:name=".EditProfile" />
         <activity android:name=".AboutUs" />
@@ -59,7 +57,6 @@
         <activity android:name=".Price" />
         <activity android:name=".EditTrouserMeasurements" />
         <activity android:name=".EditShirtMeasurements" />
-        <activity android:name=".NotificationOrderDetails" />
         <activity android:name=".HistoryOrderDetails" />
         <activity android:name=".OrderDetail" />
         <activity android:name=".Measurements" />

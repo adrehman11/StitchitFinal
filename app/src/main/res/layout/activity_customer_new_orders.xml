@@ -190,25 +190,25 @@
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:id="@+id/newOrder_arView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="AR VIEW"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/newOrder_arView"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="AR VIEW"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
-                        <TextView
-                            android:id="@+id/newOrder_notification"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="NOTIFICATION"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/newOrder_notification"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="NOTIFICATION"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
 
 
@@ -230,12 +230,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/customer_settings_icon_newOrder"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:id="@+id/customer_profile_newOrder"
+                    android:layout_width="27dp"
+                    android:layout_height="34dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/settings_white_24dp" />
+                    app:srcCompat="@drawable/profile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

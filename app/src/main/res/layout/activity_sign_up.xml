@@ -107,12 +107,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputEditText
 
-                android:id="@+id/signup_fname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
+                    android:id="@+id/signup_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00A83939"
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -158,8 +159,9 @@
                     android:id="@+id/signup_lname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00A83939"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -260,13 +262,6 @@
                     android:text="EMAIL"
                     android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="*"
-                    android:textColor="#ED0F0F"
-                    android:textSize="14sp" />
-
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -277,8 +272,9 @@
                     android:id="@+id/signup_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00A83939"
                     android:ems="10"
-                    android:inputType="textEmailAddress"  />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -342,6 +338,7 @@
                     android:id="@+id/signup_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00A83939"
                     android:ems="10"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -405,6 +402,7 @@
                     android:id="@+id/signup_confirmpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00A83939"
                     android:ems="10"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -467,8 +465,9 @@
                     android:id="@+id/signup_phoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00A83939"
                     android:ems="10"
-                    android:inputType="phone"/>
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

@@ -64,10 +64,10 @@ public class TailorNewOrder extends AppCompatActivity {
         myorders = findViewById(R.id.TailorNewOrders_my_orders);
         gallery = findViewById(R.id.TailorNewOrders_3d_gallery);
         history = findViewById(R.id.TailorNewOrders_history);
-        notification = findViewById(R.id.TailorNewOrders_notification);
+//        notification = findViewById(R.id.TailorNewOrders_notification);
         neworders = findViewById(R.id.TailorNewOrders_new_orders);
         pending = findViewById(R.id.TailorNewOrders_pending);
-        arview = findViewById(R.id.TailorNewOrders_arView);
+//        arview = findViewById(R.id.TailorNewOrders_arView);
         rejectedOrder = findViewById(R.id.tailornew_rejectedOrder);
 
         profile_name = findViewById(R.id.TailorNewOrders_tailorName);
@@ -121,13 +121,13 @@ public class TailorNewOrder extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TailorNewOrder.this, NotificationTailor.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(TailorNewOrder.this, NotificationTailor.class);
+//                startActivity(intent);
+//            }
+//        });
 
         pending.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,13 +137,13 @@ public class TailorNewOrder extends AppCompatActivity {
             }
         });
 
-        arview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(TailorNewOrder.this,TailorARView.class);
-//                startActivity(intent);
-            }
-        });
+//        arview.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Intent intent = new Intent(TailorNewOrder.this,TailorARView.class);
+////                startActivity(intent);
+//            }
+//        });
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override

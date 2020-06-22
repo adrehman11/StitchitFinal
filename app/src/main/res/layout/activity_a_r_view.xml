@@ -183,26 +183,26 @@
                             android:textColor="#FFFFFF"
                             android:textSize="13sp" />
 
-                        <TextView
-                            android:id="@+id/customer_ARView_arView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="AR VIEW"
-                            android:textStyle="bold"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/customer_ARView_arView"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="AR VIEW"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
-                        <TextView
-                            android:id="@+id/customer_ARView_notification"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="18dp"
-                            android:layout_weight="0"
-                            android:text="NOTIFICATION"
-                            android:textColor="#FFFFFF"
-                            android:textSize="13sp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/customer_ARView_notification"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginRight="18dp"-->
+<!--                            android:layout_weight="0"-->
+<!--                            android:text="NOTIFICATION"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:textSize="13sp" />-->
 
 
 

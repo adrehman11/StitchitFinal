@@ -69,10 +69,10 @@ public class TailorHistory extends AppCompatActivity {
         myorders = findViewById(R.id.historyscreen_my_orders);
         gallery = findViewById(R.id.historyscreen_3d_gallery);
         history = findViewById(R.id.historyscreen_history);
-        notification = findViewById(R.id.historyscreen_notification);
+//        notification = findViewById(R.id.historyscreen_notification);
         neworders = findViewById(R.id.historyscreen_new_orders);
         pending = findViewById(R.id.historyscreen_pending);
-        arview = findViewById(R.id.historyscreen_arView);
+//        arview = findViewById(R.id.historyscreen_arView);
         rejectedOrder = findViewById(R.id.History_rejectedOrder2);
 
 
@@ -119,13 +119,13 @@ public class TailorHistory extends AppCompatActivity {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TailorHistory.this, NotificationTailor.class);
-                startActivity(intent);
-            }
-        });
+//        notification.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(TailorHistory.this, NotificationTailor.class);
+//                startActivity(intent);
+//            }
+//        });
 
         neworders.setOnClickListener(new View.OnClickListener() {
             @Override

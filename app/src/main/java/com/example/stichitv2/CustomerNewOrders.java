@@ -40,6 +40,7 @@ public class CustomerNewOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_new_orders);
+        customer_profile_icon       = findViewById(R.id.customer_profile_newOrder);
         final FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         progressDialog = new ProgressDialog((CustomerNewOrders.this));
@@ -50,16 +51,24 @@ public class CustomerNewOrders extends AppCompatActivity {
         );
 
 
+        customer_profile_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerNewOrders.this,customerprofile.class);
+                startActivity(intent);
+            }
+        });
+
         queue= Volley.newRequestQueue(CustomerNewOrders.this);
 
         //      DECLARATION OF  LAYOUT REFERENCE
         measurements                = findViewById(R.id.newOrder_measurements);
-        customer_settings_icon       = findViewById(R.id.customer_settings_icon_newOrder);
+//        customer_settings_icon       = findViewById(R.id.customer_settings_icon_newOrder);
         gallery = findViewById(R.id.newOrder_gallery);
-        notification = findViewById(R.id.newOrder_notification);
+//        notification = findViewById(R.id.newOrder_notification);
         history = findViewById(R.id.newOrder_history);
         pending= findViewById(R.id.newOrder_pending);
-        arView = findViewById(R.id.newOrder_arView);
+//        arView = findViewById(R.id.newOrder_arView);
         tailorNearMe = findViewById(R.id.newOrder_tailor_near_me);
         myorder = findViewById(R.id.newOrder_my_orders);
         profile_name = findViewById(R.id.welcome_back);
@@ -120,23 +129,7 @@ public class CustomerNewOrders extends AppCompatActivity {
         });
 
 
-        //     INTENT TO PROFILE SCREEN
-        customer_settings_icon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CustomerNewOrders.this,Settings.class);
-                intent.putExtra("screen_name","Customer");
-                startActivity(intent);
-            }
-        });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerNewOrders.this,CustomerNotification.class);
-//                startActivity(intent);
-//            }
-//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
