@@ -71,7 +71,7 @@ public class TailorAddWork extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String discription =description.getText().toString();
-                Log.d("Rehman",discription);
+
                 try {
                     post_data.put("id", Home_Tailor.user_id);
                     post_data.put("utype", Home_Tailor.utype);

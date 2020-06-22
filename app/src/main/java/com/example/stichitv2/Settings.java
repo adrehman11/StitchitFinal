@@ -97,8 +97,18 @@ public class Settings extends AppCompatActivity {
         helpandsupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), HelpandSupport.class);
-                startActivity(intent);
+                if (screen_name.equals("Tailor"))
+                {
+                    Intent intent = new Intent(view.getContext(),HelpandSupport.class);
+                    intent.putExtra("screen_name","Tailor");
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(view.getContext(),HelpandSupport.class);
+                    intent.putExtra("screen_name","Customer");
+                    startActivity(intent);
+                }
             }
         });
 

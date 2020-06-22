@@ -34,6 +34,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -304,8 +305,8 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                                         float lngi1= Float.parseFloat(tailors.get(i).longi);
                                         LatLng latLng1 = new LatLng(lati1,lngi1);
                                         MarkerOptions markerOptions0 = new MarkerOptions().position(latLng1).title("location 0 tailor");
-                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng1));
-                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
+//                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng1));
+//                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
                                         ggoogleMap.addMarker(markerOptions0);
                                     }
                                 } catch (JSONException e) {
@@ -335,9 +336,10 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         ggoogleMap=googleMap;
         LatLng latLng = new LatLng(mlocation.getLatitude(), mlocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("location is yours");
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("YOUR LOCATION");
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
         ggoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
         ggoogleMap.addMarker(markerOptions);
 
         ggoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {

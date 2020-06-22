@@ -20,9 +20,10 @@ public class HelpandSupport extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_helpand_support);
-
+        Intent intent           = getIntent();
+        final String screen_name      = intent.getStringExtra("screen_name");
         back_btn_helpandsupport = findViewById(R.id.back_btn_Faqs);
-        reportproblem = findViewById(R.id.reportprobleminFAQs);
+
         reportproblem_btn = findViewById(R.id.reportproblmbuttononfaq);
         gotanswer_btn = findViewById(R.id.gotanswerbuttonfaq);
 
@@ -34,19 +35,23 @@ public class HelpandSupport extends AppCompatActivity {
             }
         });
 
-        reportproblem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ReportProblem.class);
-                startActivity(intent);
-            }
-        });
+
 
         reportproblem_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),ReportProblem.class);
-                startActivity(intent);
+                if (screen_name.equals("Tailor"))
+                {
+                    Intent intent = new Intent(view.getContext(),ReportProblem.class);
+                    intent.putExtra("screen_name","Tailor");
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(view.getContext(),ReportProblem.class);
+                    intent.putExtra("screen_name","Customer");
+                    startActivity(intent);
+                }
             }
         });
 
