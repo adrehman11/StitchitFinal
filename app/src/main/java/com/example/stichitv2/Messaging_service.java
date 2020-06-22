@@ -30,8 +30,7 @@ import org.json.JSONObject;
 
 public class Messaging_service extends Service {
 private String orderID;
-String servicename;
-    String abc;
+String servicename="alibaba";
     DatabaseReference database = FirebaseDatabase.getInstance().getReference("NotificationTailor");
     DatabaseReference orderARs = FirebaseDatabase.getInstance().getReference("NotificationCustomer");
     Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -108,57 +107,70 @@ String servicename;
 
 
         else if(servicename.equals("notificationCustomer")){
-            abc=intent.getStringExtra("anc");
-            if(abc.equals("customer")) {
-                String jsonArray = intent.getStringExtra("orderarray");
-                try {
-                    JSONArray Orderarray = new JSONArray(jsonArray);
-                    for (int i = 0; i < Orderarray.length(); i++) {
-                        JSONObject resdata = Orderarray.getJSONObject(i);
-                        orderID = resdata.getString("orderID");
-                        Log.d("Rehman", orderID);
-                        final DatabaseReference getnotification1 = orderARs.child(orderID);
-                        getnotification1.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                String value = dataSnapshot.getValue(String.class);
+            String jsonArray = intent.getStringExtra("orderarray");
+            try {
+                JSONArray Orderarray = new JSONArray(jsonArray);
+                for(int i=0;i<Orderarray.length();i++) {
+                    JSONObject resdata = Orderarray.getJSONObject(i);
+                    orderID=resdata.getString("orderID");
+                    Log.d("Rehman",orderID);
+                    final DatabaseReference getnotification1 = orderARs.child(orderID);
+                    getnotification1.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String value = dataSnapshot.getValue(String.class);
 
-                                if (value == null) {
-
-                                } else if (value.equals("OrderAccepted")) {
-                                    shownotification("Your Order is Accepted");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("OrderRejected")) {
-                                    shownotification("Your Order is Rejected");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("ReOrderTailor")) {
-                                    shownotification("You recieved new order (reorder)");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("Cut")) {
-                                    shownotification("Your Order is in cutting stage");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("Stitch")) {
-                                    shownotification("Your Order is ready for stitch");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("Press")) {
-                                    shownotification("Your Order is ready for press");
-                                    getnotification1.setValue("seen");
-                                } else if (value.equals("Finish")) {
-                                    shownotification("Your Order is completed");
-                                    getnotification1.setValue("seen");
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
+                            if(value==null)
+                            {
 
                             }
-                        });
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                            else if(value.equals("OrderAccepted"))
+                            {
+                                shownotification("Your Order is Accepted");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("OrderRejected"))
+                            {
+                                shownotification("Your Order is Rejected");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("ReOrderTailor"))
+                            {
+                                shownotification("You recieved new order (reorder)");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Cut"))
+                            {
+                                shownotification("Your Order is in cutting stage");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Stitch"))
+                            {
+                                shownotification("Your Order is ready for stitch");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Press"))
+                            {
+                                shownotification("Your Order is ready for press");
+                                getnotification1.setValue("seen");
+                            }
+                            else if(value.equals("Finish"))
+                            {
+                                shownotification("Your Order is completed");
+                                getnotification1.setValue("seen");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+
+                        }
+                    });
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
         }
         else if(servicename.equals("getnotificationtailor")){
 
