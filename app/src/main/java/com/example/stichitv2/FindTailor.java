@@ -13,7 +13,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -46,12 +45,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
 import java.util.ArrayList;
 
 public class FindTailor extends AppCompatActivity implements OnMapReadyCallback {
     Location mlocation;
-    ArrayList<Tailor> tailors;
+    ArrayList<Tailor> tailors,tailors2;
     String lati,lngi;
     double lati1,lngi1;
     String urli = Config.url;
@@ -76,7 +74,8 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_tailor_location);
 
-
+        tailors = new ArrayList<Tailor>();
+        tailors2 = new ArrayList<Tailor>();
 
         popup_backBtn = findViewById(R.id.recommender_close);
         popup_txt1 = findViewById(R.id.popup_txt1);
@@ -89,18 +88,134 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
         recommenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               LinearLayout id1,id2,id3;
+               id1 = findViewById(R.id.id1);
+               id2=findViewById(R.id.id2);
+               id3=findViewById(R.id.id3);
 
-//                show_popup = !show_popup;
+                TextView tf1,tf2,tf3,tf4,tf5,tf6;
+                ImageView v1,v2,v3;
+                tf1=findViewById(R.id.popup_txt1);
+                tf2=findViewById(R.id.popup_txt2);
+                tf3=findViewById(R.id.popup_txt3);
+
+                tf4=findViewById(R.id.rec_tailorRating1);
+                tf5=findViewById(R.id.rec_tailorRating2);
+                tf6=findViewById(R.id.rec_tailorRating3);
+
+                v1=findViewById(R.id.rec_tailorImg1);
+                v2=findViewById(R.id.rec_tailorImg2);
+                v3=findViewById(R.id.rec_tailorImg3);
+                try {
+                    post_data.put("id",Home_Customer.user_id);
+                    post_data.put("utype",Home_Customer.utype);
+                    post_data.put("lati",lati);
+                    post_data.put("lngi",lngi);
+                    String temp =urli+"recommender";
+                    JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, temp, post_data, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            Log.d("Rehman", "onresp" + response.toString());
+
+                            try {
+                                JSONArray array = response.getJSONArray("resData");
+                                for(int i=0;i<array.length();i++)
+                                {
+                                    JSONObject resdata = array.getJSONObject(i);
+                                    String id = resdata.getString("tailor_ID");
+                                    String name = resdata.getString("tailor_name");
+                                    String rating = resdata.getString("tailor_rating");
+                                    String image = resdata.getString("tailor_image");
+                                    Tailor temp_t = new Tailor(id, name, image, rating,"");
+                                    tailors2.add(temp_t);
+
+                                }
+                                for(int i=0;i<tailors.size();i++) {
+                                    if(i==0){
+                                        String imagebit =tailors2.get(i).image;
+                                        byte[] decodedString = Base64.decode(imagebit, Base64.DEFAULT);
+                                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                       v1.setImageBitmap(decodedByte);
+                                       tf1.setText(tailors2.get(i).name);
+                                        tf4.setText(tailors2.get(i).rating);
+                                    }
+                                     else if(i==1){
+                                        String imagebit =tailors2.get(i).image;
+                                        byte[] decodedString = Base64.decode(imagebit, Base64.DEFAULT);
+                                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                        v2.setImageBitmap(decodedByte);
+                                        tf2.setText(tailors2.get(i).name);
+                                        tf5.setText(tailors2.get(i).rating);
+                                    }
+                                    else if (i==2){
+                                        String imagebit =tailors2.get(i).image;
+                                        byte[] decodedString = Base64.decode(imagebit, Base64.DEFAULT);
+                                        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                                        v3.setImageBitmap(decodedByte);
+                                        tf3.setText(tailors2.get(i).name);
+                                        tf6.setText(tailors2.get(i).rating);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
+                    queue.add(getRequest);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 recommender_popup.setVisibility(View.VISIBLE);
-
-
-//                if(show_popup){
-//                    recommender_popup.setVisibility(View.VISIBLE);
-//                }
-//                else{
-//                    recommender_popup.setVisibility(View.INVISIBLE);
-//                }
+                id1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FindTailor.this, FindTailorProfile.class);
+                        intent.putExtra("tailorid",tailors2.get(0).id);
+                        if(screen.equals("reorder"))
+                        {
+                            intent.putExtra("orderdate",orderDate);
+                            intent.putExtra("orderID",orderID);
+                        }
+                        intent.putExtra("screen",screen);
+                        startActivity(intent);
+                    }
+                });
+                id2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FindTailor.this, FindTailorProfile.class);
+                        intent.putExtra("tailorid",tailors2.get(1).id);
+                        if(screen.equals("reorder"))
+                        {
+                            intent.putExtra("orderdate",orderDate);
+                            intent.putExtra("orderID",orderID);
+                        }
+                        intent.putExtra("screen",screen);
+                        startActivity(intent);
+                    }
+                });
+                id3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FindTailor.this, FindTailorProfile.class);
+                        intent.putExtra("tailorid",tailors2.get(2).id);
+                        if(screen.equals("reorder"))
+                        {
+                            intent.putExtra("orderdate",orderDate);
+                            intent.putExtra("orderID",orderID);
+                        }
+                        intent.putExtra("screen",screen);
+                        startActivity(intent);
+                    }
+                });
 
             }
         });
@@ -112,7 +227,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
 
 
                 recommender_popup.setVisibility(View.INVISIBLE);
-//                show_popup=false;
+
 
 
             }
@@ -134,7 +249,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
 
         }
 
-        tailors = new ArrayList<Tailor>();
+
         myDialog = new Dialog(this);
     }
 
@@ -159,8 +274,6 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                     lngi1 = mlocation.getLongitude();
                     lati= String.valueOf(lati1);
                     lngi= String.valueOf(lngi1);
-                    Log.d("Rehman",lati);
-                    Log.d("Rehman",lngi);
                     try {
                         post_data.put("id",Home_Customer.user_id);
                         post_data.put("utype",Home_Customer.utype);

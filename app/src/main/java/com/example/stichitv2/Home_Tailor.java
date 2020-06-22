@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONArray;
@@ -38,7 +39,7 @@ public class Home_Tailor extends AppCompatActivity {
     private ImageView tailor_profile_btn;
     private TextView orders, gallery, history,profile_name,neworder,rejectedOrder,pending,rating;
     public static  String user_id,utype,name,ratingvalue;
-    Button floating_action_button;
+    FloatingActionButton floating_action_button;
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
     String urli = Config.url;
@@ -79,7 +80,7 @@ public class Home_Tailor extends AppCompatActivity {
         gallery = findViewById(R.id.tailor_3d_gallery);
         history = findViewById(R.id.tailor_history);
         neworder = findViewById(R.id.tailor_new_orders);
-        floating_action_button = findViewById(R.id.floating_action_button);
+        floating_action_button = (FloatingActionButton) findViewById(R.id.floating_action_button);
         rejectedOrder = findViewById(R.id.RejectedOrder);
         pending= findViewById(R.id.tailor_pending);
 

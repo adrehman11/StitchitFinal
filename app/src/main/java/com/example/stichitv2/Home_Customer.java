@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.unity3d.player.UnityPlayerActivity;
 
 import org.json.JSONArray;
@@ -36,7 +37,7 @@ public class Home_Customer extends AppCompatActivity {
 
     private TextView        measurements, gallery, Chat, history,tailorNearMe,profile_name,neworder,pending,rejectedOrder;
     private ImageView       customer_profile_icon;
-    private Button floating_action_button;
+    private FloatingActionButton floating_action_button;
     public static  String user_id,utype,name;
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
@@ -64,7 +65,7 @@ public class Home_Customer extends AppCompatActivity {
         user_id = preferences.getString("id","");
         utype = preferences.getString("utype","");
         name = preferences.getString("name","");
-        floating_action_button=findViewById(R.id.floating_action_button);
+        floating_action_button= (FloatingActionButton) findViewById(R.id.floating_action_button);
 
         File deletePrefFile = new File("/data/data/com.hirecraft.hirecraftmanager/shared_prefs/sendorder.xml");
           deletePrefFile.delete();

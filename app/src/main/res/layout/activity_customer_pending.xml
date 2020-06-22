@@ -229,12 +229,12 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/customer_settings_icon_pending"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:id="@+id/customer_profile_pending"
+                    android:layout_width="27dp"
+                    android:layout_height="34dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/settings_white_24dp" />
+                    app:srcCompat="@drawable/profile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

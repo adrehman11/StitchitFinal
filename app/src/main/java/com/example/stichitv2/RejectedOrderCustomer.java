@@ -131,7 +131,7 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         customer_settings_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RejectedOrderCustomer.this,RejectedOrderCustomer.class);
+                Intent intent = new Intent(RejectedOrderCustomer.this,customerprofile.class);
                 startActivity(intent);
             }
         });

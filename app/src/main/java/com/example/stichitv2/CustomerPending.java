@@ -54,7 +54,7 @@ public class CustomerPending extends AppCompatActivity {
 
         //      DECLARATION OF  LAYOUT REFERENCE
         measurements                = findViewById(R.id.customerPending_measurements);
-        customer_settings_icon       = findViewById(R.id.customer_settings_icon_pending);
+        customer_settings_icon       = findViewById(R.id.customer_profile_pending);
         gallery = findViewById(R.id.customerPending_gallery);
 //        notification = findViewById(R.id.customerPending_notification);
         history = findViewById(R.id.customerPending_history);
@@ -107,8 +107,7 @@ public class CustomerPending extends AppCompatActivity {
         customer_settings_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerPending.this, Settings.class);
-                intent.putExtra("screen_name","Customer");
+                Intent intent = new Intent(CustomerPending.this, customerprofile.class);
                 startActivity(intent);
             }
         });

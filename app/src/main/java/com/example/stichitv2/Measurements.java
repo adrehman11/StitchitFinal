@@ -78,7 +78,7 @@ public class Measurements extends AppCompatActivity {
 
         editshirtbuton = findViewById(R.id.editShirtButton);
         edittrouserbuton = findViewById(R.id.editTrouserButton);
-        customer_settings_icon       = findViewById(R.id.customer_settings_iconInMeasurements);
+        customer_settings_icon       = findViewById(R.id.customer_profile_measurement);
         myorder = findViewById(R.id.measurements_my_orders);
         history = findViewById(R.id.measurements_history);
 //        notification = findViewById(R.id.measurements_notification);
@@ -152,8 +152,8 @@ public class Measurements extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(v.getContext(),Settings.class);
-                intent.putExtra("screen_name","Customer");
+                Intent intent = new Intent(v.getContext(),customerprofile.class);
+
                 startActivity(intent);
             }
         });
@@ -175,14 +175,6 @@ public class Measurements extends AppCompatActivity {
         });
 
 
-//        gallery.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(v.getContext(),Gallery.class);
-//                startActivity(intent);
-//            }
-//        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override

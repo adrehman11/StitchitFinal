@@ -81,7 +81,7 @@ public class CustomerHistory extends AppCompatActivity {
         );
         //      DECLARATION OF  LAYOUT REFERENCE
         measurements = findViewById(R.id.historycustomer_measurements);
-        customer_settings_icon = findViewById(R.id.historycustomer_settings_icon);
+        customer_settings_icon = findViewById(R.id.customer_profile_history);
         gallery = findViewById(R.id.historycustomer_gallery);
         notification = findViewById(R.id.historycustomer_notification);
         myorders = findViewById(R.id.historycustomer_my_orders);
@@ -125,8 +125,8 @@ public class CustomerHistory extends AppCompatActivity {
         customer_settings_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerHistory.this, Settings.class);
-                intent.putExtra("screen_name", "Customer");
+                Intent intent = new Intent(CustomerHistory.this, customerprofile.class);
+
                 startActivity(intent);
             }
         });
