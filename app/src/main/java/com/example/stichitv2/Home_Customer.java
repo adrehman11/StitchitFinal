@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,7 +35,8 @@ import screen.unified.CometChatUnified;
 public class Home_Customer extends AppCompatActivity {
 
     private TextView        measurements, gallery, Chat, history,tailorNearMe,profile_name,neworder,pending,rejectedOrder;
-    private ImageView       customer_profile_icon, customer_settings_icon;
+    private ImageView       customer_profile_icon;
+    private Button floating_action_button;
     public static  String user_id,utype,name;
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
@@ -62,6 +64,7 @@ public class Home_Customer extends AppCompatActivity {
         user_id = preferences.getString("id","");
         utype = preferences.getString("utype","");
         name = preferences.getString("name","");
+        floating_action_button=findViewById(R.id.floating_action_button);
 
         File deletePrefFile = new File("/data/data/com.hirecraft.hirecraftmanager/shared_prefs/sendorder.xml");
           deletePrefFile.delete();
@@ -139,15 +142,15 @@ public class Home_Customer extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//
-//        Chat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                        Intent intent =  new Intent(Home_Customer.this, CometChatUnified.class);
-//                        intent.putExtra("userType","Tailor");
-//                          startActivity(intent);
-//            }
-//        });
+
+        floating_action_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                        Intent intent =  new Intent(Home_Customer.this, CometChatUnified.class);
+                        intent.putExtra("userType","Tailor");
+                          startActivity(intent);
+            }
+        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override

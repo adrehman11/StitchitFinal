@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,9 +36,9 @@ import screen.unified.CometChatUnified;
 public class Home_Tailor extends AppCompatActivity {
 
     private ImageView tailor_profile_btn;
-    private TextView orders, gallery, history, CHAT,profile_name,neworder,rejectedOrder,pending,rating;
+    private TextView orders, gallery, history,profile_name,neworder,rejectedOrder,pending,rating;
     public static  String user_id,utype,name,ratingvalue;
-
+    Button floating_action_button;
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
     String urli = Config.url;
@@ -78,7 +79,7 @@ public class Home_Tailor extends AppCompatActivity {
         gallery = findViewById(R.id.tailor_3d_gallery);
         history = findViewById(R.id.tailor_history);
         neworder = findViewById(R.id.tailor_new_orders);
-        CHAT = findViewById(R.id.tailor_CHAT);
+        floating_action_button = findViewById(R.id.floating_action_button);
         rejectedOrder = findViewById(R.id.RejectedOrder);
         pending= findViewById(R.id.tailor_pending);
 
@@ -136,7 +137,7 @@ public class Home_Tailor extends AppCompatActivity {
             }
         });
 
-        CHAT.setOnClickListener(new View.OnClickListener() {
+        floating_action_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(Home_Tailor.this, CometChatUnified.class);
