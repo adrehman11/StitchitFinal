@@ -229,7 +229,6 @@ public class Home_Customer extends AppCompatActivity {
                         String orderID = resdata.getString("ordersID");
                         String orderdate = resdata.getString("orderDate");
                         String tailorname = resdata.getString("tailorName");
-                       // String tailorlocation = resdata.getString("tailorLocation");
                         String image = resdata.getString("image");
                         String dresstype = resdata.getString("dresstype");
                         Orders temp_o = new Orders(ID , tailorname, orderdate,orderID,image,dresstype);

@@ -116,8 +116,9 @@ public class CustomerHistory extends AppCompatActivity {
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerHistory.this, Gallery.class);
+                Intent intent = new Intent(CustomerHistory.this, UnityPlayerActivity.class);
                 startActivity(intent);
+
             }
         });
 
