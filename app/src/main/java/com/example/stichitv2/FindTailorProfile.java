@@ -439,7 +439,7 @@ public class FindTailorProfile extends AppCompatActivity {
                                     if (message.equals("order reassigned")){
                                         Intent a  = new Intent(FindTailorProfile.this,Messaging_service.class);
                                         a.putExtra("servicename","CustomerReOrder");
-                                        a.putExtra("oid",oid);
+                                        a.putExtra("OrderID",oid);
                                         startService(a);
                                         Intent intent = new Intent(FindTailorProfile.this,Home_Customer.class);
                                         startActivity(intent);
