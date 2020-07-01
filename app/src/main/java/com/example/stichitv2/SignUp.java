@@ -2,6 +2,7 @@ package com.example.stichitv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -43,7 +44,7 @@ public class SignUp extends AppCompatActivity {
     private RadioGroup User,Gender;
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
-
+    public static ProgressDialog progressDialog;
     String urli = Config.url;
     String temp  = urli+"signup";
 
@@ -100,6 +101,13 @@ public class SignUp extends AppCompatActivity {
         signup_buttton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog((SignUp.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 Fname=fname.getText().toString();
                 Lname = lname.getText().toString();
                 Phone = contact.getText().toString();
@@ -112,10 +120,12 @@ public class SignUp extends AppCompatActivity {
                 final String utype = userType.getText().toString();
                 if(Fname.equals("")||Lname.equals("")||Phone.equals("")||Email.equals("")||password.equals("")||Cpassword.equals(""))
                 {
+                    progressDialog.dismiss();
                     Toast.makeText(SignUp.this,"All fields must be filled",Toast.LENGTH_LONG).show();
                 }
                 else if (!Password.equals(Cpassword))
                 {
+                    progressDialog.dismiss();
                     Toast.makeText(SignUp.this,"password does not match",Toast.LENGTH_LONG).show();
                 }
                 else {
@@ -139,7 +149,6 @@ public class SignUp extends AppCompatActivity {
                                     message = response.getString("message");
                                     if (message.equals("next")) {
                                         id = response.getString("id");
-                                        Log.d("Rehman",id);
                                         utype = response.getString("utype");
                                         com.cometchat.pro.models.User user = new User();
                                         user.setUid(id); // Replace with the UID for the user to be created
@@ -166,6 +175,7 @@ public class SignUp extends AppCompatActivity {
                                         editor.putString("rating",response.getString("rating"));
                                         editor.putString("name",response.getString("name"));
                                         editor.apply();
+                                        progressDialog.dismiss();
                                         startActivity(i);
 
                                     }
@@ -198,6 +208,7 @@ public class SignUp extends AppCompatActivity {
                                         editor.putString("id",id);
                                         editor.putString("name",response.getString("name"));
                                         editor.apply();
+                                        progressDialog.dismiss();
                                         startActivity(i);
                                     }
                                 } catch (JSONException e) {

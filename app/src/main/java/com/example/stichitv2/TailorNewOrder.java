@@ -121,13 +121,6 @@ public class TailorNewOrder extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(TailorNewOrder.this, NotificationTailor.class);
-//                startActivity(intent);
-//            }
-//        });
 
         pending.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,13 +130,6 @@ public class TailorNewOrder extends AppCompatActivity {
             }
         });
 
-//        arview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Intent intent = new Intent(TailorNewOrder.this,TailorARView.class);
-////                startActivity(intent);
-//            }
-//        });
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,6 +208,8 @@ public class TailorNewOrder extends AppCompatActivity {
 
                 } catch (JSONException e) {
 
+                    progressDialog.dismiss();
+                    Log.d("Rehman",e.getMessage());
                 }
 
 

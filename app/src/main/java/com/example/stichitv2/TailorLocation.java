@@ -146,7 +146,7 @@ public class TailorLocation extends FragmentActivity implements OnMapReadyCallba
     Marker selectedLocation;
     public void onMapReady(final GoogleMap googleMap) {
         LatLng latLng = new LatLng(mlocation.getLatitude(),mlocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("location is yours");
+        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("This is your Location");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
         googleMap.addMarker(markerOptions);

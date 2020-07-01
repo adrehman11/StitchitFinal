@@ -2,6 +2,7 @@ package com.example.stichitv2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -45,10 +46,10 @@ public class SignIn extends AppCompatActivity {
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
     private   boolean checked;
-
+    public static ProgressDialog progressDialog;
     String urli = Config.url;
     String temp  = urli+"login";
-
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +90,13 @@ public class SignIn extends AppCompatActivity {
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog((SignIn.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 RadioButton  utype = findViewById(user_type.getCheckedRadioButtonId());
                 final String utypec = utype.getText().toString();
 
@@ -106,7 +114,6 @@ public class SignIn extends AppCompatActivity {
 
                             Log.d("Rehman", "onresp" + response.toString());
                             String message = null;
-                            String id = null;
                             String utype = null;
                             String name = null;
                             String rating = null;
@@ -159,7 +166,26 @@ public class SignIn extends AppCompatActivity {
                                             });
                                         } else {
                                             // User already logged in
-                                            Toast.makeText(SignIn.this, "User is already logged in", Toast.LENGTH_SHORT).show();
+                                            CometChat.logout(new CometChat.CallbackListener<String>() {
+                                                @Override
+                                                public void onSuccess(String successMessage) {
+                                                  CometChat.login(id, Config.AuthKey, new CometChat.CallbackListener<User>() {
+                                                      @Override
+                                                      public void onSuccess(User user) {
+                                                          Log.d("Rehman", "Login Successful : " + user.toString());
+                                                      }
+
+                                                      @Override
+                                                      public void onError(CometChatException e) {
+                                                          Log.d("Rehman", "Login failed with exception: " + e.getMessage());
+                                                      }
+                                                  });
+                                                }
+                                                @Override
+                                                public void onError(CometChatException e) {
+                                                    Log.d("Rehman", "Logout failed with exception: " + e.getMessage());
+                                                }
+                                            });
 
                                         }
                                         Intent i = new Intent(SignIn.this,Home_Customer.class);
@@ -182,9 +208,29 @@ public class SignIn extends AppCompatActivity {
                                             });
                                         } else {
                                             // User already logged in
-                                           Log.d("Rehman","logged in already");
+                                            CometChat.logout(new CometChat.CallbackListener<String>() {
+                                                @Override
+                                                public void onSuccess(String successMessage) {
+                                                    CometChat.login(id, Config.AuthKey, new CometChat.CallbackListener<User>() {
+                                                        @Override
+                                                        public void onSuccess(User user) {
+                                                            Log.d("Rehman", "Login Successful : " + user.toString());
+                                                        }
+
+                                                        @Override
+                                                        public void onError(CometChatException e) {
+                                                            Log.d("Rehman", "Login failed with exception: " + e.getMessage());
+                                                        }
+                                                    });
+                                                }
+                                                @Override
+                                                public void onError(CometChatException e) {
+                                                    Log.d("Rehman", "Logout failed with exception: " + e.getMessage());
+                                                }
+                                            });
 
                                         }
+                                        progressDialog.dismiss();
                                         Intent i = new Intent(SignIn.this,Home_Tailor.class);
                                         startActivity(i);
                                     }
@@ -192,11 +238,13 @@ public class SignIn extends AppCompatActivity {
                                 }
                                 else if(message.equals("wrong password"))
                                 {
+                                    progressDialog.dismiss();
                                     Toast.makeText(SignIn.this,"wrong password",Toast.LENGTH_LONG).show();
                                     passwordText.setText("");
                                 }
                                 else if(message.equals("Email does not exsist"))
                                 {
+                                    progressDialog.dismiss();
                                     emailText.setText("");
                                     passwordText.setText("");
                                     Toast.makeText(SignIn.this,"Email does not exsist",Toast.LENGTH_LONG).show();
@@ -221,6 +269,7 @@ public class SignIn extends AppCompatActivity {
 
                 }
                 else{
+                    progressDialog.dismiss();
                     Toast.makeText(v.getContext(), "Enter email and passowrd", Toast.LENGTH_LONG).show();
                 }
 

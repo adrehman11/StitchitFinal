@@ -28,7 +28,7 @@ public class  Rejected_Order_List_customer extends Fragment {
     int                        position;
     private TextView ordersid,orderdate,tailorname,tailorlocation,dresstype;
     ImageView imageView;
-
+    Button b1;
 
     public Rejected_Order_List_customer(ArrayList<Orders> orders, int position) {
         this.orders  = orders;
@@ -39,6 +39,7 @@ public class  Rejected_Order_List_customer extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         LinearLayout c   = (LinearLayout) inflater.inflate(R.layout.customer_new_order, container, false);
+        b1=c.findViewById(R.id.contact_tailor_btn_newOrderCustomer) ;
 
         ordersid =  c.findViewById(R.id.customer_id_myOrder2);
         ordersid     .setText(orders.get(position).getOrderID());
@@ -55,6 +56,14 @@ public class  Rejected_Order_List_customer extends Fragment {
         dresstype =  c.findViewById(R.id.customer_newOrder_dress_name);
         dresstype     .setText(orders.get(position).getDresstype());
 
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inflater.getContext(), ChatTailor.class);
+                intent.putExtra("UID",orders.get(position).getTailorID());
+                startActivity(intent);
+            }
+        });
         imageView =  c.findViewById(R.id.customer_newOrderdress_img);
         byte[] decodedString = Base64.decode(orders.get(position).getImage(), Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -183,6 +184,14 @@ public class Home_Tailor extends AppCompatActivity {
 
                 }
             });
+            getRequest.setRetryPolicy(
+                    new DefaultRetryPolicy(
+                            500000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                    )
+            );
+
             queue.add(getRequest);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -257,7 +266,8 @@ public class Home_Tailor extends AppCompatActivity {
 
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
+                    Log.d("Rehman",e.getMessage());
                 }
 
 

@@ -112,13 +112,6 @@ public class RejectedOrderTailor extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(RejectedOrderTailor.this, NotificationTailor.class);
-//                startActivity(intent);
-//            }
-//        });
 
         pending.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,13 +127,7 @@ public class RejectedOrderTailor extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        arview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(TailorNewOrder.this,TailorARView.class);
-//                startActivity(intent);
-            }
-        });
+
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override

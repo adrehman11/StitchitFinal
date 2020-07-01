@@ -51,6 +51,7 @@ public class Home_Customer extends AppCompatActivity {
         //try
         progressDialog = new ProgressDialog((Home_Customer.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent

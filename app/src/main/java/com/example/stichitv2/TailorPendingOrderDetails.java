@@ -129,7 +129,7 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
                                 if (message.equals("order reassigned")){
                                     Intent a  = new Intent(TailorPendingOrderDetails.this,Messaging_service.class);
                                     a.putExtra("servicename","TailorReOrder");
-                                    a.putExtra("oid",orderID);
+                                    a.putExtra("OrderID",orderID);
                                     startService(a);
 
                                     Intent intent = new Intent(v.getContext(),Home_Tailor.class);

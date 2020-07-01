@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/light_grey"
         android:orientation="vertical"
         android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"

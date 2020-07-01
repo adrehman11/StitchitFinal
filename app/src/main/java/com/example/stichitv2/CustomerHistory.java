@@ -132,13 +132,7 @@ public class CustomerHistory extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerHistory.this, CustomerNotification.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,13 +164,7 @@ public class CustomerHistory extends AppCompatActivity {
             }
         });
 
-//        arView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerHistory.this, ARView.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         neworder.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -32,7 +32,7 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class RejectedOrderCustomer extends AppCompatActivity {
 
-    private TextView        measurements, gallery, notification, history,tailorNearMe,profile_name,neworder,rejectedOrder,myorder;
+    private TextView        measurements, gallery, pending, history,tailorNearMe,profile_name,neworder,rejectedOrder,myorder;
     private ImageView       customer_profile_icon, customer_settings_icon;
     public static  String user_id,utype,name;
     final JSONObject post_data = new JSONObject();
@@ -58,7 +58,7 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         measurements                = findViewById(R.id.rejectedordercustomer_measurements);
         customer_settings_icon       = findViewById(R.id.customer_profile_Rejected);
         gallery = findViewById(R.id.rejectedordercustomer_gallery);
-//        notification = findViewById(R.id.rejectedordercustomer_notification);
+       pending = findViewById(R.id.rejectedordercustomer_pending);
         tailorNearMe = findViewById(R.id.rejectedordercustomer_tailor_near_me);
         neworder = findViewById(R.id.rejectedordercustomer_newOrder);
         history = findViewById(R.id.rejectedordercustomer_history);
@@ -136,13 +136,13 @@ public class RejectedOrderCustomer extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(RejectedOrderCustomer.this,CustomerNotification.class);
-//                startActivity(intent);
-//            }
-//        });
+        pending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RejectedOrderCustomer.this,CustomerPending.class);
+                startActivity(intent);
+            }
+        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +186,8 @@ public class RejectedOrderCustomer extends AppCompatActivity {
                         String image = resdata.getString("image");
                         String tailorLocation = resdata.getString("tailorLocation");
                         String dresstype = resdata.getString("dresstype");
-                        Orders temp_o = new Orders(ID ,tailorname,orderdate,ordersID, image,tailorLocation, dresstype,"abc");
+                        String tailorID = resdata.getString("TailorID");
+                        Orders temp_o = new Orders(ID ,tailorname,orderdate,ordersID, image,tailorLocation, dresstype,tailorID);
                         orders.add(temp_o);
                     }
 

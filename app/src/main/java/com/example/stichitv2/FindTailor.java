@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -121,6 +122,10 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
 
                             try {
                                 JSONArray array = response.getJSONArray("resData");
+                                if(array.length()<=0 )
+                                {
+                                    Toast.makeText(FindTailor.this,"No Tailor Available in Your Area",Toast.LENGTH_LONG).show();
+                                }
                                 for(int i=0;i<array.length();i++)
                                 {
                                     JSONObject resdata = array.getJSONObject(i);
@@ -288,6 +293,10 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
 
                                 try {
                                     JSONArray array = response.getJSONArray("resData");
+                                    if(array.length()<=0 )
+                                    {
+                                        Toast.makeText(FindTailor.this,"No Tailor Available in Your Area",Toast.LENGTH_LONG).show();
+                                    }
                                     for(int i=0;i<array.length();i++)
                                     {
                                         JSONObject resdata = array.getJSONObject(i);
@@ -305,8 +314,6 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                                         float lngi1= Float.parseFloat(tailors.get(i).longi);
                                         LatLng latLng1 = new LatLng(lati1,lngi1);
                                         MarkerOptions markerOptions0 = new MarkerOptions().position(latLng1).title("location 0 tailor");
-//                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng1));
-//                                        ggoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng1, 13));
                                         ggoogleMap.addMarker(markerOptions0);
                                     }
                                 } catch (JSONException e) {
