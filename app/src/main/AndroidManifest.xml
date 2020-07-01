@@ -43,10 +43,8 @@
         <activity android:name=".ResetPassword" />
         <activity android:name=".EnterCode" />
         <activity android:name=".ForgetPassword" />
-        <activity android:name=".Gallery" />
         <activity android:name=".TailorAddWork" />
         <activity android:name=".ViewTailorWork" />
-        <activity android:name=".OrderPlaced" />
         <activity android:name=".SendOrder" />
         <activity android:name=".TailorHistory" />
         <activity android:name=".Language" />

@@ -46,6 +46,7 @@ public class RejectedOrderCustomer extends AppCompatActivity {
         setContentView(R.layout.activity_rejected_order_customer);
         progressDialog = new ProgressDialog((RejectedOrderCustomer.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -200,14 +201,14 @@ public class RejectedOrderCustomer extends AppCompatActivity {
 
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
                 }
 
 
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error) {progressDialog.dismiss();
             }
         });
         queue.add(getRequest);

@@ -60,6 +60,7 @@ TextView rating;
 
         progressDialog = new ProgressDialog((Profile.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -407,18 +408,21 @@ TextView rating;
 
 
                     } catch (JSONException e) {
+                        progressDialog.dismiss();
                         e.printStackTrace();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
                     Log.d("Rehman", String.valueOf(error));
                 }
             });
             queue.add(getRequest);
 
         } catch (JSONException e) {
+            progressDialog.dismiss();
             e.printStackTrace();
         }
 

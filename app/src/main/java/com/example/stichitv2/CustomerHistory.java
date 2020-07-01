@@ -75,6 +75,7 @@ public class CustomerHistory extends AppCompatActivity {
 
         progressDialog = new ProgressDialog((CustomerHistory.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -242,7 +243,7 @@ public class CustomerHistory extends AppCompatActivity {
 
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
                 }
 
 

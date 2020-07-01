@@ -48,6 +48,7 @@ public class TailorNewOrder extends AppCompatActivity {
         setContentView(R.layout.activity_tailor_new_order);
         progressDialog = new ProgressDialog((TailorNewOrder.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -217,6 +218,7 @@ public class TailorNewOrder extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
             }
         });
         queue.add(getRequest);

@@ -304,6 +304,7 @@ public class SendOrder extends AppCompatActivity {
             public void onClick(View v) {
                 progressDialog = new ProgressDialog((SendOrder.this));
                 progressDialog.show();
+                progressDialog.setCancelable(false);
                 progressDialog.setContentView(R.layout.activity_loading_screen);
                 progressDialog.getWindow().setBackgroundDrawableResource(
                         android.R.color.transparent
@@ -369,19 +370,21 @@ public class SendOrder extends AppCompatActivity {
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                progressDialog.dismiss();
                                 // Toast.makeText(editprofile.this, "no key: 'id' in reponse", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            progressDialog.dismiss();
 
                         }
                     });
                     queue.add(getRequest);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                     Log.d("Rehman",e.getMessage());
                 }
             }

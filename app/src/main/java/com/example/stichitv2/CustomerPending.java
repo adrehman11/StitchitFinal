@@ -46,6 +46,7 @@ public class CustomerPending extends AppCompatActivity {
 
         progressDialog = new ProgressDialog((CustomerPending.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -112,14 +113,6 @@ public class CustomerPending extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerPending.this, CustomerNotification.class);
-//                startActivity(intent);
-//            }
-//        });
-
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,13 +121,7 @@ public class CustomerPending extends AppCompatActivity {
             }
         });
 
-//        arView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerPending.this, CustomerHistory.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +187,7 @@ public class CustomerPending extends AppCompatActivity {
                     fragmentTransaction.commit();
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
                 }
 
 
@@ -211,6 +198,7 @@ public class CustomerPending extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
             }
         });
         queue.add(getRequest);

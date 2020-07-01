@@ -48,6 +48,7 @@ public class TailorHistory extends AppCompatActivity {
 
         progressDialog = new ProgressDialog((TailorHistory.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -119,13 +120,6 @@ public class TailorHistory extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(TailorHistory.this, NotificationTailor.class);
-//                startActivity(intent);
-//            }
-//        });
 
         neworders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,13 +137,7 @@ public class TailorHistory extends AppCompatActivity {
             }
         });
 
-//        arview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(History.this,TailorARView.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         // CALENDAR VIEW SETTINGS START
 
@@ -218,12 +206,13 @@ public class TailorHistory extends AppCompatActivity {
                     fragmentTransaction.commit();
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
             }
         });
         queue1.add(getRequest);

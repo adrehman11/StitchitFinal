@@ -245,7 +245,7 @@ public class Home_Customer extends AppCompatActivity {
 
 
                 } catch (JSONException e) {
-
+                    progressDialog.dismiss();
                 }
 
 
@@ -255,7 +255,7 @@ public class Home_Customer extends AppCompatActivity {
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onErrorResponse(VolleyError error) { progressDialog.dismiss();
             }
         });
         queue.add(getRequest);

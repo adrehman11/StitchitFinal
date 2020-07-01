@@ -57,6 +57,7 @@ public class customerprofile extends AppCompatActivity {
         setContentView(R.layout.activity_customerprofile);
         progressDialog = new ProgressDialog((customerprofile.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -132,17 +133,20 @@ public class customerprofile extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
                     Log.d("Rehman", String.valueOf(error));
                 }
             });
             queue.add(getRequest);
 
         } catch (JSONException e) {
+            progressDialog.dismiss();
             e.printStackTrace();
         }
 

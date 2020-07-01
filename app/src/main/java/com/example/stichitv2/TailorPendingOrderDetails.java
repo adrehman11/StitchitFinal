@@ -52,6 +52,7 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
         setContentView(R.layout.activity_tailor_pending_order_details);
         progressDialog = new ProgressDialog((TailorPendingOrderDetails.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -192,17 +193,20 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
                 }
             });
             queue.add(getRequest);
 
         } catch (JSONException e) {
             e.printStackTrace();
+            progressDialog.dismiss();
         }
     }
 }

@@ -44,6 +44,7 @@ public class CustomerNewOrderDetails extends AppCompatActivity {
         setContentView(R.layout.activity_customer_new_order_details);
         progressDialog = new ProgressDialog((CustomerNewOrderDetails.this));
         progressDialog.show();
+        progressDialog.setCancelable(false);
         progressDialog.setContentView(R.layout.activity_loading_screen);
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
@@ -154,17 +155,20 @@ public class CustomerNewOrderDetails extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
                 }
             });
             queue.add(getRequest);
 
         } catch (JSONException e) {
             e.printStackTrace();
+            progressDialog.dismiss();
         }
     }
 }
