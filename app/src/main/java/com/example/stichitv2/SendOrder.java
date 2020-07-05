@@ -205,7 +205,56 @@ public class SendOrder extends AppCompatActivity {
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imageView.setImageBitmap(decodedByte);
             DressType=dresstype;
-
+            if(stich.equals("Single"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_stitchtype_single);
+                sticht.setChecked(true);
+            }
+            else if(stich.equals("Double"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_stitchtype_double);
+                sticht.setChecked(true);
+            }
+            if(laces.equals("Yes"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_lace_yes);
+                sticht.setChecked(true);
+            }
+            else if(laces.equals("No"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_lace_No);
+                sticht.setChecked(true);
+            }
+            if(pipe.equals("Yes"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_piping_Yes);
+                sticht.setChecked(true);
+            }
+            else if(pipe.equals("No"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_Piping_No);
+                sticht.setChecked(true);
+            }
+            if(button.equals("Yes"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_buttons_Yes);
+                sticht.setChecked(true);
+            }
+            else if(button.equals("No"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_buttons_No);
+                sticht.setChecked(true);
+            }
+            if(oders.equals("Urgent"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_urgent);
+                sticht.setChecked(true);
+            }
+            else if(oders.equals("Normal"))
+            {
+                RadioButton sticht=findViewById(R.id.sendOrder_normal);
+                sticht.setChecked(true);
+            }
 
 
 
@@ -327,6 +376,7 @@ public class SendOrder extends AppCompatActivity {
 
                 RadioButton oder = findViewById(oderdate.getCheckedRadioButtonId());
                 final String oders = oder.getText().toString();
+
 
 
 

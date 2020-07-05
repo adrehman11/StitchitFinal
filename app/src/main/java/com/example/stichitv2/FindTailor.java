@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -64,7 +65,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
     GoogleMap ggoogleMap=null;
     Dialog myDialog;
     String  screen,orderID,orderDate;
-
+    ProgressDialog progressDialog;
     private LinearLayout recommender_popup;
     private ImageView popup_backBtn;
     private TextView popup_txt1,popup_txt2,popup_txt3;
@@ -90,11 +91,20 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
         recommenderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = new ProgressDialog((FindTailor.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                LinearLayout id1,id2,id3;
                id1 = findViewById(R.id.id1);
                id2=findViewById(R.id.id2);
                id3=findViewById(R.id.id3);
-
+                id1.setVisibility(View.GONE);
+                id2.setVisibility(View.GONE);
+                id3.setVisibility(View.GONE);
                 TextView tf1,tf2,tf3,tf4,tf5,tf6;
                 ImageView v1,v2,v3;
                 tf1=findViewById(R.id.popup_txt1);
@@ -125,6 +135,24 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                                 if(array.length()<=0 )
                                 {
                                     Toast.makeText(FindTailor.this,"No Tailor Available in Your Area",Toast.LENGTH_LONG).show();
+                                }
+                                else if(array.length()==1)
+                                {
+                                    id1.setVisibility(View.VISIBLE);
+                                    id2.setVisibility(View.GONE);
+                                    id3.setVisibility(View.GONE);
+                                }
+                                else if(array.length()==2)
+                                {
+                                    id1.setVisibility(View.VISIBLE);
+                                    id2.setVisibility(View.VISIBLE);
+                                    id3.setVisibility(View.GONE);
+                                }
+                                else if(array.length()==3)
+                                {
+                                    id1.setVisibility(View.VISIBLE);
+                                    id2.setVisibility(View.VISIBLE);
+                                    id3.setVisibility(View.VISIBLE);
                                 }
                                 for(int i=0;i<array.length();i++)
                                 {
@@ -163,20 +191,23 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                                         tf6.setText(tailors2.get(i).rating);
                                     }
                                 }
+                                progressDialog.dismiss();
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                progressDialog.dismiss();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            progressDialog.dismiss();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                 }
 
                 recommender_popup.setVisibility(View.VISIBLE);
