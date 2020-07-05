@@ -200,6 +200,7 @@ public class CustomerHistory extends AppCompatActivity {
 
         final ArrayList<Orders> orders = new ArrayList<>();
         post_data.put("id", Home_Customer.user_id);
+        Log.d("Rehman",Home_Customer.user_id);
         post_data.put("utype", Home_Customer.utype);
         post_data.put("status","Finish");
         final JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, temp, post_data, new Response.Listener<JSONObject>() {
