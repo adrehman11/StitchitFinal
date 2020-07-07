@@ -122,7 +122,9 @@ public class SendOrder extends AppCompatActivity {
         back_btn_sendorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),SendOrder.class);
+                Intent intent = new Intent(v.getContext(),FindTailorProfile.class);
+                intent.putExtra("screen","home");
+                intent.putExtra("tailorid",tailorid);
                 startActivity(intent);
             }
         });
