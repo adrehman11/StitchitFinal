@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -136,6 +137,7 @@ public class HistoryOrderDetails extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
+                    Toast.makeText(HistoryOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

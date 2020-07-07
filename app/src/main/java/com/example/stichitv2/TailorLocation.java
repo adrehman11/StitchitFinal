@@ -1,6 +1,7 @@
 package com.example.stichitv2;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -46,7 +47,7 @@ public class TailorLocation extends FragmentActivity implements OnMapReadyCallba
     private static final int Request_Code=101;
     private RequestQueue queue;
     final JSONObject post_data = new JSONObject();
-
+    public static ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +68,17 @@ public class TailorLocation extends FragmentActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
 
-
+                progressDialog = new ProgressDialog(TailorLocation.this);
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 if(selectedLocation == null){
 
                     Toast.makeText(TailorLocation.this, "Select your shop location", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
                 else
                 {
@@ -94,6 +102,7 @@ public class TailorLocation extends FragmentActivity implements OnMapReadyCallba
 
                                         Intent i = new Intent(TailorLocation.this,Price.class);
                                         i.putExtra("screen_name","afterlocation");
+                                        progressDialog.dismiss();
                                         Toast.makeText(TailorLocation.this, "location set", Toast.LENGTH_SHORT).show();
                                         startActivity(i);
 
@@ -101,18 +110,21 @@ public class TailorLocation extends FragmentActivity implements OnMapReadyCallba
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    progressDialog.dismiss();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Log.d("Rehman", String.valueOf(error));
+                                progressDialog.dismiss();
+                                Toast.makeText(TailorLocation.this, "Check your Connection", Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(getRequest);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                     }
 
                 }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -185,14 +186,7 @@ public class Measurements extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(v.getContext(),CustomerNotification.class);
-//                startActivity(intent);
-//            }
-//        });
+
         try {
             String urli = Config.url;
             String temp  = urli+"addmeasurements/getmeasurements";
@@ -231,7 +225,7 @@ public class Measurements extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(Measurements.this, "Check your Connection", Toast.LENGTH_LONG).show();
 
                 }
             });

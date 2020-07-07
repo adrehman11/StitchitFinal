@@ -95,7 +95,13 @@ public class SendOrder extends AppCompatActivity {
 
         calender.setDate(millis);
         calender.setMinDate(millis);
-
+        progressDialog = new ProgressDialog((SendOrder.this));
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        progressDialog.setContentView(R.layout.activity_loading_screen);
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent
+        );
 
         calender.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -201,9 +207,12 @@ public class SendOrder extends AppCompatActivity {
             shirtDetails.setText(Shirtdetails);
             trouserDetails.setText(Trouserdetails);
             comments.setText(commentss);
-            byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            imageView.setImageBitmap(decodedByte);
+            if(!image.equals("null"))
+            {
+                byte[] decodedString = Base64.decode(image, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageView.setImageBitmap(decodedByte);
+            }
             DressType=dresstype;
             if(stich.equals("Single"))
             {
@@ -284,24 +293,27 @@ public class SendOrder extends AppCompatActivity {
                         }
 
                             Dress.setAdapter(adapter);
+                        progressDialog.dismiss();
 
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                         // Toast.makeText(editprofile.this, "no key: 'id' in reponse", Toast.LENGTH_SHORT).show();
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    progressDialog.dismiss();
+                    Toast.makeText(SendOrder.this, "Check your Connection", Toast.LENGTH_LONG).show();
 
                 }
             });
             queue.add(getRequest);
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.d("Rehman",e.getMessage());
+            progressDialog.dismiss();
         }
 
         editmeaurement.setOnClickListener(new View.OnClickListener() {
@@ -337,7 +349,15 @@ public class SendOrder extends AppCompatActivity {
                 editor.putString("pipe",pipe);
                 editor.putString("button",button);
                 editor.putString("oders",oders);
-                editor.putString("image", imagetostring(bitmap));
+                if(bitmap!=null)
+                {
+                    editor.putString("image", imagetostring(bitmap));
+                }
+                else
+                {
+                    editor.putString("image", "null");
+                }
+
                 editor.putString("orderdate",OderDates);
                 editor.putString("comments",Comments);
                 editor.apply();
@@ -362,81 +382,92 @@ public class SendOrder extends AppCompatActivity {
                 String Trouserdetails = trouserDetails.getText().toString();
                 String Comments = comments.getText().toString();
 
-                RadioButton sticht = findViewById(Stichtype.getCheckedRadioButtonId());
-                final String stich = sticht.getText().toString();
-
-                RadioButton lace = findViewById(Lace.getCheckedRadioButtonId());
-                final String laces = lace.getText().toString();
-
-                RadioButton piping = findViewById(Piping.getCheckedRadioButtonId());
-                final String pipe = piping.getText().toString();
-
-                RadioButton buttons = findViewById(Buttons.getCheckedRadioButtonId());
-                final String button = buttons.getText().toString();
-
-                RadioButton oder = findViewById(oderdate.getCheckedRadioButtonId());
-                final String oders = oder.getText().toString();
-
-
-
-
-                try {
-                    post_data.put("id",Home_Customer.user_id);
-                    post_data.put("tailorid",tailorid);
-                    post_data.put("utype",Home_Customer.utype);
-                    post_data.put("shirtdetails",Shirtdetails);
-                    post_data.put("trouserdetails",Trouserdetails);
-                    post_data.put("dresstype",DressType);
-                    post_data.put("dressprice",DressPrice);
-                    post_data.put("stichtype",stich);
-                    post_data.put("lace",laces);
-                    post_data.put("pipe",pipe);
-                    post_data.put("button",button);
-                    post_data.put("odertype",oders);
-                    post_data.put("image", imagetostring(bitmap));
-                    post_data.put("orderdate", OderDates);
-                    post_data.put("comments", Comments);
-
-
-
-                    JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, temp, post_data, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            String message = null;
-                            try {
-                                message = response.getString("message");
-                                Log.d("Rehman",response.toString());
-                                if(message.equals("order placed"))
-                                {
-                                    progressDialog.dismiss();
-                                    Intent a  = new Intent(SendOrder.this,Messaging_service.class);
-                                    a.putExtra("oid",response.getString("orderid"));
-                                    a.putExtra("tailorid",response.getString("tailorid"));
-                                    a.putExtra("servicename","sendorder");
-                                    startService(a);
-                                    Intent intent = new Intent(SendOrder.this,Home_Customer.class);
-                                    startActivity(intent);
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                progressDialog.dismiss();
-                                // Toast.makeText(editprofile.this, "no key: 'id' in reponse", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            progressDialog.dismiss();
-
-                        }
-                    });
-                    queue.add(getRequest);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if(shirtDetails.equals("") || Trouserdetails.equals("") || Comments.equals("") || bitmap==null)
+                {
+                    Toast.makeText(SendOrder.this,"All fields Must be Filled before Sending the Request",Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
-                    Log.d("Rehman",e.getMessage());
                 }
+                else
+                {
+                    RadioButton sticht = findViewById(Stichtype.getCheckedRadioButtonId());
+                    final String stich = sticht.getText().toString();
+
+                    RadioButton lace = findViewById(Lace.getCheckedRadioButtonId());
+                    final String laces = lace.getText().toString();
+
+                    RadioButton piping = findViewById(Piping.getCheckedRadioButtonId());
+                    final String pipe = piping.getText().toString();
+
+                    RadioButton buttons = findViewById(Buttons.getCheckedRadioButtonId());
+                    final String button = buttons.getText().toString();
+
+                    RadioButton oder = findViewById(oderdate.getCheckedRadioButtonId());
+                    final String oders = oder.getText().toString();
+
+
+
+
+                    try {
+                        post_data.put("id",Home_Customer.user_id);
+                        post_data.put("tailorid",tailorid);
+                        post_data.put("utype",Home_Customer.utype);
+                        post_data.put("shirtdetails",Shirtdetails);
+                        post_data.put("trouserdetails",Trouserdetails);
+                        post_data.put("dresstype",DressType);
+                        post_data.put("dressprice",DressPrice);
+                        post_data.put("stichtype",stich);
+                        post_data.put("lace",laces);
+                        post_data.put("pipe",pipe);
+                        post_data.put("button",button);
+                        post_data.put("odertype",oders);
+                        post_data.put("image", imagetostring(bitmap));
+                        post_data.put("orderdate", OderDates);
+                        post_data.put("comments", Comments);
+
+
+
+                        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.POST, temp, post_data, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                String message = null;
+                                try {
+                                    message = response.getString("message");
+                                    Log.d("Rehman",response.toString());
+                                    if(message.equals("order placed"))
+                                    {
+                                        progressDialog.dismiss();
+                                        Intent a  = new Intent(SendOrder.this,Messaging_service.class);
+                                        a.putExtra("oid",response.getString("orderid"));
+                                        a.putExtra("tailorid",response.getString("tailorid"));
+                                        a.putExtra("servicename","sendorder");
+                                        startService(a);
+                                        Intent intent = new Intent(SendOrder.this,Home_Customer.class);
+                                        startActivity(intent);
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    progressDialog.dismiss();
+                                    // Toast.makeText(editprofile.this, "no key: 'id' in reponse", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                progressDialog.dismiss();
+                                Toast.makeText(SendOrder.this, "Check your Connection", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                        queue.add(getRequest);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss();
+                        Log.d("Rehman",e.getMessage());
+                    }
+                }
+
+
             }
         });
 

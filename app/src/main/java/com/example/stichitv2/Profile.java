@@ -416,7 +416,7 @@ TextView rating;
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
-                    Log.d("Rehman", String.valueOf(error));
+                    Toast.makeText(Profile.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -213,6 +214,7 @@ public class TailorHistory extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                Toast.makeText(TailorHistory.this, "Check your Connection", Toast.LENGTH_LONG).show();
             }
         });
         queue1.add(getRequest);

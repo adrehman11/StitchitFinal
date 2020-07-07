@@ -140,7 +140,7 @@ public class customerprofile extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
-                    Log.d("Rehman", String.valueOf(error));
+                    Toast.makeText(customerprofile.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);
@@ -193,6 +193,7 @@ public class customerprofile extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(customerprofile.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);

@@ -42,6 +42,7 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -253,6 +254,7 @@ public class CustomerHistory extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                Toast.makeText(CustomerHistory.this, "Check your Connection", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(getRequest);
@@ -307,7 +309,7 @@ public class CustomerHistory extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.d("Rehman", String.valueOf(error));
+                            Toast.makeText(CustomerHistory.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);

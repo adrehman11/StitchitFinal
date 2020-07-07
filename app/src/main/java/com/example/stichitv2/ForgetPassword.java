@@ -95,6 +95,7 @@ public class ForgetPassword extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(ForgetPassword.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);

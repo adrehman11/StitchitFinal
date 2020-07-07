@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -112,7 +113,13 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
         reorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
+                progressDialog = new ProgressDialog((TailorPendingOrderDetails.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 try {
                     post_data.put("id",Home_Tailor.user_id);
                     post_data.put("utype",Home_Tailor.utype);
@@ -132,22 +139,26 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
                                     a.putExtra("servicename","TailorReOrder");
                                     a.putExtra("OrderID",orderID);
                                     startService(a);
-
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(v.getContext(),Home_Tailor.class);
                                     startActivity(intent);
                                 }
                             } catch (JSONException e) {
+                                progressDialog.dismiss();
                                 e.printStackTrace();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TailorPendingOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
 
@@ -200,6 +211,7 @@ public class TailorPendingOrderDetails extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
+                    Toast.makeText(TailorPendingOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

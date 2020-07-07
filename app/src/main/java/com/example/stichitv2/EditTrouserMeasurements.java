@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -100,7 +101,7 @@ public class EditTrouserMeasurements extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-
+                            Toast.makeText(EditTrouserMeasurements.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);

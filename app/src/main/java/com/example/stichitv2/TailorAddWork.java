@@ -3,6 +3,7 @@ package com.example.stichitv2;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +42,7 @@ public class TailorAddWork extends AppCompatActivity {
     ImageView imageView;
     String urli = Config.url;
     String temp  = urli+"test/tailorwork";
+    public static ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +74,13 @@ public class TailorAddWork extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String discription =description.getText().toString();
-
+                progressDialog = new ProgressDialog(TailorAddWork.this);
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 try {
                     post_data.put("id", Home_Tailor.user_id);
                     post_data.put("utype", Home_Tailor.utype);
@@ -87,17 +96,21 @@ public class TailorAddWork extends AppCompatActivity {
                                 message = response.getString("message");
                                 if(message.equals("work uploaded"))
                                 {
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(TailorAddWork.this,Profile.class);
                                     startActivity(intent);
                                 }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                progressDialog.dismiss();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TailorAddWork.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
@@ -106,6 +119,7 @@ public class TailorAddWork extends AppCompatActivity {
                 catch (Exception e)
                 {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                 }
                 }
         });

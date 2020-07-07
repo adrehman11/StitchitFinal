@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -193,7 +194,7 @@ public class Home_Customer extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(Home_Customer.this, "Check your Connection", Toast.LENGTH_LONG).show();
 
                 }
             });
@@ -221,6 +222,7 @@ public class Home_Customer extends AppCompatActivity {
                     JSONArray array = response.getJSONArray("resData");
                     if(array.length() <= 0 )
                     {
+                        Toast.makeText(Home_Customer.this,"No order to display ",Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
                     }
                     for(int i=0;i<array.length();i++)
@@ -256,6 +258,7 @@ public class Home_Customer extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) { progressDialog.dismiss();
+                Toast.makeText(Home_Customer.this, "Check your Connection", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(getRequest);

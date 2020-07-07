@@ -127,7 +127,7 @@ public class EditShirtMeasurements extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-
+                            Toast.makeText(EditShirtMeasurements.this, "Check your Connection", Toast.LENGTH_LONG).show();
 
                         }
                     });

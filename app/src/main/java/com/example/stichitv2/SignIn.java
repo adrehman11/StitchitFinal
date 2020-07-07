@@ -251,18 +251,21 @@ public class SignIn extends AppCompatActivity {
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                progressDialog.dismiss();
                                 Log.d("Rehman", "abc1");
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.d("Rehman", String.valueOf(error));
+                            progressDialog.dismiss();
+                            Toast.makeText(SignIn.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
                 if(!isEmpty(email) && !isEmpty(password)){

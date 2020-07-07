@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -400,7 +401,7 @@ public class FindTailorProfile extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("Rehman", String.valueOf(error));
+                    Toast.makeText(FindTailorProfile.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);
@@ -451,6 +452,7 @@ public class FindTailorProfile extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(FindTailorProfile.this, "Check your Connection", Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(getRequest);

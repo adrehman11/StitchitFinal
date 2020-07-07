@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -199,6 +200,7 @@ public class CustomerPending extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                Toast.makeText(CustomerPending.this, "Check your Connection", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(getRequest);

@@ -212,18 +212,22 @@ public class SignUp extends AppCompatActivity {
                                         startActivity(i);
                                     }
                                 } catch (JSONException e) {
+                                    progressDialog.dismiss();
                                     e.printStackTrace();
                                 }
                             }
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                progressDialog.dismiss();
+                                Toast.makeText(SignUp.this, "Check your Connection", Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(getRequest);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        progressDialog.dismiss();
                     }
                 }
             }

@@ -176,7 +176,7 @@ public class CustomerPendingOrderDetails extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    progressDialog.dismiss();
+                    progressDialog.dismiss(); Toast.makeText(CustomerPendingOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

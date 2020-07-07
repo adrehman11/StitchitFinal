@@ -201,6 +201,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             progressDialog.dismiss();
+                            Toast.makeText(FindTailor.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
@@ -354,7 +355,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
                         }, new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Log.d("Rehman", String.valueOf(error));
+                                Toast.makeText(FindTailor.this, "Check your Connection", Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(getRequest);
@@ -384,14 +385,14 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
             @Override
             public boolean onMarkerClick(Marker marker) {
                 String lat=  ""+marker.getPosition().latitude;
-                lat = lat.substring(0,7);
+                lat = lat.substring(0,6);
                 String lang= ""+marker.getPosition().longitude;
-                lang = lang.substring(0,7);
+                lang = lang.substring(0,6);
 
                 for (Tailor tailor:tailors) {
                     ID=tailor.id;
-                    String lati1=tailor.lati.substring(0,7);
-                    String lngi1=tailor.longi.substring(0,7);
+                    String lati1=tailor.lati.substring(0,6);
+                    String lngi1=tailor.longi.substring(0,6);
                     if(lati1.equals(lat)&& lngi1.equals(lang))
                     {
                         ShowPopup(ID);
@@ -492,7 +493,7 @@ public class FindTailor extends AppCompatActivity implements OnMapReadyCallback 
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("Rehman", String.valueOf(error));
+                    Toast.makeText(FindTailor.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

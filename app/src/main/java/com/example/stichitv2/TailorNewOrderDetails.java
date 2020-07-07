@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,6 +73,13 @@ public class TailorNewOrderDetails extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                progressDialog = new ProgressDialog((TailorNewOrderDetails.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 try {
                     post_data.put("id",Home_Tailor.user_id);
                     post_data.put("utype",Home_Tailor.utype);
@@ -90,6 +98,7 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                                     a.putExtra("servicename","OrderAccepted");
                                     a.putExtra("OrderID",orderID);
                                     startService(a);
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(v.getContext(),TailorNewOrder.class);
                                     startActivity(intent);
                                 }
@@ -100,12 +109,15 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TailorNewOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                 }
 
             }
@@ -115,6 +127,13 @@ public class TailorNewOrderDetails extends AppCompatActivity {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                progressDialog = new ProgressDialog((TailorNewOrderDetails.this));
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
 
                 try {
                     post_data.put("id",Home_Tailor.user_id);
@@ -134,6 +153,7 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                                     a.putExtra("servicename","OrderRejected");
                                     a.putExtra("OrderID",orderID);
                                     startService(a);
+                                    progressDialog.dismiss();
                                     Intent intent = new Intent(v.getContext(),TailorNewOrder.class);
                                     startActivity(intent);
                                 }
@@ -144,12 +164,15 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(TailorNewOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                 }
 
             }
@@ -254,6 +277,7 @@ public class TailorNewOrderDetails extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
+                    Toast.makeText(TailorNewOrderDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -129,7 +130,8 @@ public class RejectedOrderCustomerDetails extends AppCompatActivity {
                 }
             }, new Response.ErrorListener() {
                 @Override
-                public void onErrorResponse(VolleyError error) {progressDialog.dismiss();
+                public void onErrorResponse(VolleyError error) { progressDialog.dismiss();
+                    Toast.makeText(RejectedOrderCustomerDetails.this, "Check your Connection", Toast.LENGTH_LONG).show();
                 }
             });
             queue.add(getRequest);

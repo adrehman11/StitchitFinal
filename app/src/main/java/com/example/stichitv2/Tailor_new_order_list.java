@@ -1,5 +1,6 @@
 package com.example.stichitv2;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -38,6 +40,7 @@ public class Tailor_new_order_list  extends Fragment {
     final JSONObject post_data = new JSONObject();
     private RequestQueue queue;
     String urli = Config.url;
+    public static ProgressDialog progressDialog;
 
     public Tailor_new_order_list(ArrayList<Orders> orders, int position) {
         this.orders  = orders;
@@ -71,7 +74,13 @@ public class Tailor_new_order_list  extends Fragment {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                progressDialog = new ProgressDialog(inflater.getContext());
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 try {
                     post_data.put("id",Home_Tailor.user_id);
                     post_data.put("utype",Home_Tailor.utype);
@@ -90,21 +99,26 @@ public class Tailor_new_order_list  extends Fragment {
                                     a.putExtra("servicename","OrderAccepted");
                                     a.putExtra("OrderID",orders.get(position).getID());
                                    getActivity().startService(a);
+                                    progressDialog.dismiss();
                                     Intent i = new Intent(inflater.getContext(),TailorNewOrder.class);
                                     startActivity(i);
                                 }
                             } catch (JSONException e) {
+                                progressDialog.dismiss();
                                 e.printStackTrace();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(inflater.getContext(), "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
             }
@@ -115,6 +129,13 @@ public class Tailor_new_order_list  extends Fragment {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = new ProgressDialog(inflater.getContext());
+                progressDialog.show();
+                progressDialog.setCancelable(false);
+                progressDialog.setContentView(R.layout.activity_loading_screen);
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
                 try {
                     post_data.put("id",Home_Tailor.user_id);
                     post_data.put("utype",Home_Tailor.utype);
@@ -133,21 +154,26 @@ public class Tailor_new_order_list  extends Fragment {
                                     a.putExtra("servicename","OrderRejected");
                                     a.putExtra("OrderID",orders.get(position).getID());
                                     getActivity().startService(a);
+                                    progressDialog.dismiss();
                                     Intent i = new Intent(inflater.getContext(),TailorNewOrder.class);
                                     startActivity(i);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                progressDialog.dismiss();
                             }
                         }
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            progressDialog.dismiss();
+                            Toast.makeText(inflater.getContext(), "Check your Connection", Toast.LENGTH_LONG).show();
                         }
                     });
                     queue.add(getRequest);
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                 }
             }

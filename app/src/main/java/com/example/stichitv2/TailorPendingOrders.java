@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -117,13 +118,7 @@ public class TailorPendingOrders extends AppCompatActivity {
             }
         });
 
-//        notification.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(TailorPendingOrders.this, NotificationTailor.class);
-//                startActivity(intent);
-//            }
-//        });
+
 
         myorders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,14 +127,6 @@ public class TailorPendingOrders extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        arview.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(TailorPendingOrders.this, TailorARView.class);
-//                startActivity(intent);
-//            }
-//        });
 
         neworders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,6 +211,7 @@ public class TailorPendingOrders extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
+                Toast.makeText(TailorPendingOrders.this, "Check your Connection", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(getRequest);
