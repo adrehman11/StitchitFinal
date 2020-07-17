@@ -90,12 +90,7 @@ public class RejectedOrderTailor extends AppCompatActivity {
             }
         });
 
-        rejectedorder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override

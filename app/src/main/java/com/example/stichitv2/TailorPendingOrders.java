@@ -94,12 +94,7 @@ public class TailorPendingOrders extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        pending.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override

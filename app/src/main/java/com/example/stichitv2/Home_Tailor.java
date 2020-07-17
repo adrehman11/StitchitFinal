@@ -117,12 +117,7 @@ public class Home_Tailor extends AppCompatActivity {
             }
         });
 
-        orders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               finish();
-            }
-        });
+
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override

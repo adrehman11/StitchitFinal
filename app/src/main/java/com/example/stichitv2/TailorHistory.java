@@ -114,12 +114,6 @@ public class TailorHistory extends AppCompatActivity {
             }
         });
 
-        history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
 
         neworders.setOnClickListener(new View.OnClickListener() {

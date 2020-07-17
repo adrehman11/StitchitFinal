@@ -99,12 +99,7 @@ public class TailorNewOrder extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        neworders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
