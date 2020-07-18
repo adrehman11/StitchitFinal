@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stichitv2</string>
+    <string name="app_name">Stichit</string>
     <string name="map_key" translatable="false">AIzaSyB_UY8Mg65jm8F_BHOarN0wQAf1pFlqqtM</string>
     <string-array name="price">
         <item></item>

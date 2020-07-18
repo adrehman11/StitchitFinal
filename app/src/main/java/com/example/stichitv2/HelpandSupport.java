@@ -26,7 +26,7 @@ public class HelpandSupport extends AppCompatActivity {
 
         reportproblem_btn = findViewById(R.id.reportproblmbuttononfaq);
         gotanswer_btn = findViewById(R.id.gotanswerbuttonfaq);
-
+        reportproblem= findViewById(R.id.reportprobleminFAQs);
         back_btn_helpandsupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,7 +36,23 @@ public class HelpandSupport extends AppCompatActivity {
         });
 
 
-
+        reportproblem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (screen_name.equals("Tailor"))
+                {
+                    Intent intent = new Intent(HelpandSupport.this,ReportProblem.class);
+                    intent.putExtra("screen_name","Tailor");
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(HelpandSupport.this,ReportProblem.class);
+                    intent.putExtra("screen_name","Customer");
+                    startActivity(intent);
+                }
+            }
+        });
         reportproblem_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

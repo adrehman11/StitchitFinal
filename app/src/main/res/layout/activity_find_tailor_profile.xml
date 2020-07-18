@@ -39,8 +39,8 @@
 
                 <ImageView
                     android:id="@+id/imageview"
-                    android:layout_width="241dp"
-                    android:layout_height="229dp"
+                    android:layout_width="171dp"
+                    android:layout_height="186dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,10 +95,10 @@
 
                     <TextView
                         android:id="@+id/Contact"
-                        android:layout_width="87dp"
+                        android:layout_width="134dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="TextView" />
+                        android:text="03326694310" />
                 </LinearLayout>
 
                 <LinearLayout

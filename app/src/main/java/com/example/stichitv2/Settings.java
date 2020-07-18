@@ -17,7 +17,7 @@ import com.cometchat.pro.exceptions.CometChatException;
 public class Settings extends AppCompatActivity {
 
     private ImageView back_btn_setting;
-    private LinearLayout editprofile, price, language, helpandsupport, aboutus,logout;
+    private LinearLayout editprofile, price,  helpandsupport, aboutus,logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +27,6 @@ public class Settings extends AppCompatActivity {
         back_btn_setting =  findViewById(R.id.back_btn_setting);
         editprofile      = findViewById(R.id.edit_profile);
         price            = findViewById(R.id.set_price);
-        language         = findViewById(R.id.language);
         helpandsupport   = findViewById(R.id.help_support);
         aboutus          = findViewById(R.id.about_us);
         logout           = findViewById(R.id.logout);
@@ -87,13 +86,7 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        language.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),Language.class);
-                startActivity(intent);
-            }
-        });
+
         helpandsupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

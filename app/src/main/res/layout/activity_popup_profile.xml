@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="475dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/light_grey"
     android:padding="5dp"
     android:layout_gravity="center">
     <TextView
         android:id="@+id/txtclose"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:textColor="#fff"
+        android:textColor="@color/colorPrimaryDark"
         android:text="X"
         android:textStyle="bold"
         android:layout_gravity="end"
@@ -36,7 +36,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:text=""
-            android:textColor="#fff"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold" />
 
         <TextView
@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:text=""
-            android:textColor="#fff" />
+            android:textColor="@color/colorPrimary" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="15dp"
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:background="#eaad43"
+            android:background="@color/colorPrimary"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_weight="1"
@@ -68,7 +68,7 @@
                 android:id="@+id/Gender_tailor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="gender"
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="18sp" />
 
@@ -76,20 +76,21 @@
                 android:id="@+id/Contact_tailor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0332221"
+                android:text=""
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
+
     <Button
         android:id="@+id/btnviewprofile"
-        android:layout_width="wrap_content"
+        android:layout_width="131dp"
         android:layout_height="wrap_content"
-        android:text="View Profile"
-        android:layout_marginTop="25dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
         android:background="@drawable/card_corners"
         android:backgroundTint="#572E0C"
+        android:text="View Profile"
         android:textColor="#FFFFFF">
 
     </Button>

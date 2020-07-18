@@ -52,8 +52,8 @@
 
             <ImageView
                 android:id="@+id/imageview"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
+                android:layout_width="171dp"
+                android:layout_height="186dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="88dp"
                 android:layout_marginTop="56dp"
@@ -87,8 +87,8 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="223dp"
-                android:layout_height="wrap_content"
+                android:layout_width="267dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="22dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="Mr X"
@@ -120,7 +120,7 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="148dp"
+                    android:layout_width="182dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="TextView" />
@@ -400,7 +400,7 @@
 
                 <TextView
                     android:id="@+id/locationInProfile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="191dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="Gulshan Colony Sheikupura"
@@ -428,9 +428,10 @@
                     android:text="Rating : "
                     android:textAlignment="center"
                     android:textSize="14sp" />
+
                 <TextView
                     android:id="@+id/value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text=""

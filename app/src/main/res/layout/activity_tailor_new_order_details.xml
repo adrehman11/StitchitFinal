@@ -315,20 +315,6 @@
                         android:text="23rd March, 2020"
                         android:textColor="#572E0C" />
 
-                    <TextView
-                        android:id="@+id/pricetext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Estimated Price" />
-
-                    <TextView
-                        android:id="@+id/pricevalue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-
                 </LinearLayout>
 
             </LinearLayout>

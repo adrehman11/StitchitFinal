@@ -355,7 +355,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="36dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Order Date"
@@ -367,21 +367,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:text="23rd March, 2020"
-                        android:textColor="#572E0C" />
-
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="EstimatedPrice" />
-
-                    <TextView
-                        android:id="@+id/customerprice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
+                        android:textColor="#572E0C"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
