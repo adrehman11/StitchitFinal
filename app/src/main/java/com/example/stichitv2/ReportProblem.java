@@ -68,6 +68,7 @@ public class ReportProblem extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),HelpandSupport.class);
+                intent.putExtra("screen_name",screen);
                 startActivity(intent);
             }
         });

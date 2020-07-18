@@ -76,17 +76,17 @@ public class HelpandSupport extends AppCompatActivity {
             public void onClick(View view) {
                 if (screen_name.equals("Tailor"))
                 {
-                    Intent intent = new Intent(view.getContext(),Settings.class);
+                    Intent intent = new Intent(HelpandSupport.this,Home_Tailor.class);
                     intent.putExtra("screen_name","Tailor");
                     startActivity(intent);
                 }
                 else
                 {
-                    Intent intent = new Intent(view.getContext(),Settings.class);
+                    Intent intent = new Intent(HelpandSupport.this,Home_Customer.class);
                     intent.putExtra("screen_name","Customer");
                     startActivity(intent);
                 }
-              
+
             }
         });
     }
