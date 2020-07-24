@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +34,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -66,7 +71,7 @@ public class SendOrder extends AppCompatActivity {
     JSONArray Dressprice;
     ProgressDialog progressDialog;
     private ArrayList<String> DressName = new ArrayList<>();
-
+    Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +107,7 @@ public class SendOrder extends AppCompatActivity {
         progressDialog.getWindow().setBackgroundDrawableResource(
                 android.R.color.transparent
         );
-
+        myDialog = new Dialog(this);
         calender.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
@@ -446,6 +451,12 @@ public class SendOrder extends AppCompatActivity {
                                         Intent intent = new Intent(SendOrder.this,Home_Customer.class);
                                         startActivity(intent);
                                     }
+                                    else if(message.equals("Null Value"))
+                                    {
+                                        progressDialog.dismiss();
+                                        Toast.makeText(SendOrder.this,"Before sending order you must have to Add measurements",Toast.LENGTH_LONG).show();
+
+                                    }
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -459,6 +470,23 @@ public class SendOrder extends AppCompatActivity {
                                 progressDialog.dismiss();
                                 Toast.makeText(SendOrder.this, "Check your Connection", Toast.LENGTH_LONG).show();
 
+                            }
+                        });
+                        getRequest.setRetryPolicy(new RetryPolicy() {
+                            @Override
+                            public int getCurrentTimeout() {
+                                return 50000;
+                            }
+
+                            @Override
+                            public int getCurrentRetryCount() {
+                                return 50000;
+                            }
+
+                            @Override
+                            public void retry(VolleyError error) throws VolleyError {
+                                progressDialog.dismiss();
+                                Toast.makeText(SendOrder.this, "Check your Connection", Toast.LENGTH_LONG).show();
                             }
                         });
                         queue.add(getRequest);
@@ -505,4 +533,5 @@ public class SendOrder extends AppCompatActivity {
             }
         }
     }
+
 }
